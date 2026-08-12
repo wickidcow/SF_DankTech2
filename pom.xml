@@ -37,10 +37,6 @@
             <url>https://nexus.neetgames.com/repository/maven-public</url>
         </repository>
         <repository>
-            <id>jeff-media-public</id>
-            <url>https://hub.jeff-media.com/nexus/repository/jeff-media-public/</url>
-        </repository>
-        <repository>
             <id>bg-repo</id>
             <url>https://repo.bg-software.com/repository/api/</url>
         </repository>
@@ -95,7 +91,7 @@
                             <shadedPattern>io.github.sefiraat.danktech2.shaded.bstats</shadedPattern>
                         </relocation>
                         <relocation>
-                            <pattern>de.jeff_media.morepersistentdatatypes</pattern>
+                            <pattern>com.jeff_media.morepersistentdatatypes</pattern>
                             <shadedPattern>io.github.sefiraat.danktech2.shaded.morepersistentdatatypes</shadedPattern>
                         </relocation>
                     </relocations>
@@ -161,9 +157,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>de.jeff_media</groupId>
+            <groupId>com.jeff-media</groupId>
             <artifactId>MorePersistentDataTypes</artifactId>
-            <version>1.0.0</version>
+            <version>2.4.0</version>
         </dependency>
 
         <dependency>
