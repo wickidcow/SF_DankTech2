@@ -1,6 +1,6 @@
 package io.github.sefiraat.danktech2.utils.datatypes;
 
-import de.jeff_media.morepersistentdatatypes.DataType;
+import com.jeff_media.morepersistentdatatypes.DataType;
 import io.github.sefiraat.danktech2.core.DankPackInstance;
 import io.github.sefiraat.danktech2.utils.Keys;
 import org.bukkit.NamespacedKey;
@@ -12,13 +12,15 @@ import org.bukkit.persistence.PersistentDataType;
 import javax.annotation.Nonnull;
 
 /**
- * A {@link PersistentDataType} for {@link DankPackInstance}
- * Creatively thieved from {@see <a href="https://github.com/baked-libs/dough/blob/main/dough-data/src/main/java/io/github/bakedlibs/dough/data/persistent/PersistentUUIDDataType.java">PersistentUUIDDataType}
+ * A {@link PersistentDataType} for {@link DankPackInstance}.
+ *
+ * <p>The serialized keys and primitive data types are intentionally unchanged so existing DankTech2
+ * pack data remains readable while the backing MorePersistentDataTypes library moves from its old
+ * {@code de.jeff_media} package to the maintained {@code com.jeff_media} package.</p>
  *
  * @author Sfiguz7
  * @author Walshy
  */
-
 public class PersistentDankInstanceType implements PersistentDataType<PersistentDataContainer, DankPackInstance> {
 
     public static final PersistentDataType<PersistentDataContainer, DankPackInstance> TYPE = new PersistentDankInstanceType();
