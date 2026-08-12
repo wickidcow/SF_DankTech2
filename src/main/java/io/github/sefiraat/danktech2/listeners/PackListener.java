@@ -43,8 +43,6 @@ public class PackListener implements Listener {
         final SlimefunItem slimefunItem = SlimefunItem.getByItem(heldItem);
         final Action action = event.getAction();
 
-
-        // Check if a dank/trash pack is in the main hand
         if (slimefunItem instanceof DankPack) {
             event.setCancelled(true);
             if (heldItem.getAmount() > 1) {
@@ -81,7 +79,6 @@ public class PackListener implements Listener {
             }
 
             if (player.isSneaking()) {
-                // Sneaking = Building or Changing Slots
                 if (action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK) {
                     incrementSlot(heldItem, dankPackInstance, player);
                 } else if (action == Action.RIGHT_CLICK_BLOCK) {
@@ -169,7 +166,10 @@ public class PackListener implements Listener {
         if (block.getBlockData().getMaterial().equals(Material.AIR)
             && Slimefun.getProtectionManager().hasPermission(player, block, Interaction.PLACE_BLOCK)
         ) {
-            Collection<Entity> entities = block.getWorld().getNearbyEntities(block.getLocation(), 0.5, 0.5, 0.5, entity -> entity.getType() != EntityType.DROPPED_ITEM);
+            Collection<Entity> entities = block.getWorld().getNearbyEntities(
+                block.getLocation(), 0.5, 0.5, 0.5,
+                entity -> entity.getType() != EntityType.ITEM
+            );
             return entities.isEmpty();
         }
         return false;
@@ -185,7 +185,7 @@ public class PackListener implements Listener {
     }
 
     private TrashPackInstance generateNewTrashInstance(ItemStack itemStack, int tier) {
-        TrashPackInstance trashPackInstance  = new TrashPackInstance(System.currentTimeMillis(), tier);
+        TrashPackInstance trashPackInstance = new TrashPackInstance(System.currentTimeMillis(), tier);
         ItemMeta itemMeta = itemStack.getItemMeta();
         DataTypeMethods.setCustom(itemMeta, Keys.TRASH_INSTANCE, PersistentTrashInstanceType.TYPE, trashPackInstance);
         itemStack.setItemMeta(itemMeta);
