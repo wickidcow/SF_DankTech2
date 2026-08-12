@@ -17,6 +17,7 @@
         <maven.compiler.release>25</maven.compiler.release>
         <paper.version>26.2.build.111-stable</paper.version>
         <slimefun.version>RC-37</slimefun.version>
+        <lombok.version>1.18.44</lombok.version>
     </properties>
 
     <repositories>
@@ -71,6 +72,14 @@
                     <release>25</release>
                     <encoding>UTF-8</encoding>
                     <showWarnings>true</showWarnings>
+                    <proc>full</proc>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                     <compilerArgs>
                         <arg>-Xlint:deprecation</arg>
                         <arg>-Xlint:unchecked</arg>
@@ -153,7 +162,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.42</version>
+            <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
