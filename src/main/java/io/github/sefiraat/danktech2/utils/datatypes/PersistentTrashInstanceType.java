@@ -1,6 +1,6 @@
 package io.github.sefiraat.danktech2.utils.datatypes;
 
-import de.jeff_media.morepersistentdatatypes.DataType;
+import com.jeff_media.morepersistentdatatypes.DataType;
 import io.github.sefiraat.danktech2.core.DankPackInstance;
 import io.github.sefiraat.danktech2.core.TrashPackInstance;
 import io.github.sefiraat.danktech2.utils.Keys;
@@ -13,13 +13,11 @@ import org.bukkit.persistence.PersistentDataType;
 import javax.annotation.Nonnull;
 
 /**
- * A {@link PersistentDataType} for {@link DankPackInstance}
- * Creatively thieved from {@see <a href="https://github.com/baked-libs/dough/blob/main/dough-data/src/main/java/io/github/bakedlibs/dough/data/persistent/PersistentUUIDDataType.java">PersistentUUIDDataType}
+ * A {@link PersistentDataType} for {@link DankPackInstance}.
  *
- * @author Sfiguz7
- * @author Walshy
+ * <p>The serialized keys and primitive types remain unchanged so existing TrashPack data remains
+ * readable while the backing MorePersistentDataTypes library moves to its maintained package.</p>
  */
-
 public class PersistentTrashInstanceType implements PersistentDataType<PersistentDataContainer, TrashPackInstance> {
 
     public static final PersistentDataType<PersistentDataContainer, TrashPackInstance> TYPE = new PersistentTrashInstanceType();

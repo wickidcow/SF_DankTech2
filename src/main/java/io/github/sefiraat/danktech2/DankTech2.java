@@ -45,7 +45,7 @@ public class DankTech2 extends JavaPlugin implements SlimefunAddon {
     private RunnableManager runnableManager;
 
     public DankTech2() {
-        this.username = "Sefiraat";
+        this.username = "wickidcow";
         this.repo = "DankTech2";
         this.branch = "master";
     }
@@ -55,11 +55,10 @@ public class DankTech2 extends JavaPlugin implements SlimefunAddon {
         instance = this;
 
         getLogger().info("########################################");
-        getLogger().info("         DankTech2 - By Sefiraat        ");
+        getLogger().info("       DankTech2 - Legacy Maintained    ");
         getLogger().info("########################################");
 
         tryUpdate();
-
         setupSlimefun();
 
         this.configManager = new ConfigManager();
@@ -67,20 +66,22 @@ public class DankTech2 extends JavaPlugin implements SlimefunAddon {
         this.supportedPluginManager = new SupportedPluginManager();
         this.runnableManager = new RunnableManager();
 
-        this.getCommand("danktech2").setExecutor(new DankTechMain());
+        if (this.getCommand("danktech2") != null) {
+            this.getCommand("danktech2").setExecutor(new DankTechMain());
+        }
 
         setupMetrics();
     }
 
     @Override
     public void onDisable() {
-        this.configManager.saveAll();
+        if (this.configManager != null) {
+            this.configManager.saveAll();
+        }
     }
 
     public void tryUpdate() {
-        if (getConfig().getBoolean("auto-update")
-            && getDescription().getVersion().startsWith("DEV")
-        ) {
+        if (getConfig().getBoolean("auto-update") && getDescription().getVersion().startsWith("DEV")) {
             String updateLocation = MessageFormat.format("{0}/{1}/{2}", this.username, this.repo, this.branch);
             updater = new GitHubBuildsUpdater(this, getFile(), updateLocation);
             updater.start();
@@ -112,7 +113,6 @@ public class DankTech2 extends JavaPlugin implements SlimefunAddon {
         final Map<String, Integer> heldItemValues = new HashMap<>();
 
         for (ItemStack dank : ConfigManager.getInstance().getAllPacks()) {
-
             if (dank == null) {
                 getLogger().warning("Bad Dank");
                 continue;
@@ -125,35 +125,30 @@ public class DankTech2 extends JavaPlugin implements SlimefunAddon {
             );
 
             Integer dankAmount = dankValues.get("Tier " + dankPackInstance.getTier());
-
             if (dankAmount == null) {
                 dankAmount = 1;
             } else {
                 dankAmount++;
             }
-
             dankValues.put("Tier " + dankPackInstance.getTier(), dankAmount);
 
             for (int i = 0; i < dankPackInstance.getTier(); i++) {
                 final ItemStack heldItem = dankPackInstance.getItem(i);
-
                 if (heldItem == null) {
                     continue;
                 }
 
                 final ItemMeta itemMeta = heldItem.getItemMeta();
-                final String name = itemMeta.hasDisplayName() ?
-                    itemMeta.getDisplayName() :
-                    ThemeType.toTitleCase(heldItem.getType().toString());
+                final String name = itemMeta.hasDisplayName()
+                    ? itemMeta.getDisplayName()
+                    : ThemeType.toTitleCase(heldItem.getType().toString());
 
                 Integer itemAmount = heldItemValues.get(name);
-
                 if (itemAmount == null) {
                     itemAmount = dankPackInstance.getAmount(i);
                 } else {
                     itemAmount += dankPackInstance.getAmount(i);
                 }
-
                 heldItemValues.put(name, itemAmount);
             }
         }
