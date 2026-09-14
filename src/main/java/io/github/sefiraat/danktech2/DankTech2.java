@@ -2,6 +2,7 @@ package io.github.sefiraat.danktech2;
 
 import io.github.sefiraat.danktech2.commands.DankTechMain;
 import io.github.sefiraat.danktech2.core.DankPackInstance;
+import io.github.sefiraat.danktech2.diagnostics.LegacyDoctorBridge;
 import io.github.sefiraat.danktech2.managers.ConfigManager;
 import io.github.sefiraat.danktech2.managers.ListenerManager;
 import io.github.sefiraat.danktech2.managers.RunnableManager;
@@ -60,6 +61,7 @@ public class DankTech2 extends JavaPlugin implements SlimefunAddon {
 
         tryUpdate();
         setupSlimefun();
+        LegacyDoctorBridge.register(this);
 
         this.configManager = new ConfigManager();
         this.listenerManager = new ListenerManager();
@@ -75,6 +77,7 @@ public class DankTech2 extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public void onDisable() {
+        LegacyDoctorBridge.unregister(this);
         if (this.configManager != null) {
             this.configManager.saveAll();
         }
