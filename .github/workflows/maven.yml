@@ -12,13 +12,12 @@ permissions:
   contents: write
 
 env:
-  LEGACY_VERSION: "1.1.01"
-  SOURCE_ARTIFACT: "SF_DankTech2_1.1.01.jar"
-  OUTPUT_NAME: "SF_DankTech21.1.01.jar"
+  LEGACY_VERSION: "1.1.02"
+  OUTPUT_NAME: "SF_DankTech21.1.02.jar"
 
 jobs:
   build:
-    name: Paper 26.2 / Java 25
+    name: Universal Java 21 / Paper 1.21.11-26.3
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -29,24 +28,51 @@ jobs:
           distribution: temurin
           java-version: '25'
           cache: maven
-      - name: Verify 26.2 build metadata
+      - name: Verify universal build metadata
         shell: bash
         run: |
           set -euo pipefail
-          grep -Fq '<paper.version>26.2.build.111-stable</paper.version>' pom.xml
-          grep -Fq '<maven.compiler.release>25</maven.compiler.release>' pom.xml
-      - name: Build and verify
-        run: mvn -B clean verify --file pom.xml
-      - name: Stage versioned JAR
+          grep -Fq '<version>1.1.02</version>' pom.xml
+          grep -Fq '<paper.version>1.21.11-R0.1-SNAPSHOT</paper.version>' pom.xml
+          grep -Fq '<maven.compiler.release>21</maven.compiler.release>' pom.xml
+          grep -Fq '<finalName>SF_DankTech2${project.version}</finalName>' pom.xml
+          grep -Fq "api-version: '1.21'" src/main/resources/plugin.yml
+      - name: Verify Paper 1.21.11 baseline compilation
+        run: mvn -B -Dmaven.test.skip=true -Dpaper.version=1.21.11-R0.1-SNAPSHOT clean package --file pom.xml
+      - name: Verify Paper 26.2 compilation
+        run: mvn -B -Dmaven.test.skip=true -Dpaper.version=26.2.build.112-stable clean package --file pom.xml
+      - name: Verify Paper 26.3 alpha compilation
+        run: mvn -B -Dmaven.test.skip=true -Dpaper.version=26.3-rc-3.build.1-alpha clean package --file pom.xml
+      - name: Build universal release JAR from 1.21.11 baseline
+        run: mvn -B -Dmaven.test.skip=true -Dpaper.version=1.21.11-R0.1-SNAPSHOT clean package --file pom.xml
+      - name: Stage and verify versioned JAR
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p dist
-          JAR="target/${SOURCE_ARTIFACT}"
-          test -s "$JAR"
-          cp "$JAR" "dist/${OUTPUT_NAME}"
-          jar tf "dist/${OUTPUT_NAME}" | grep -Fxq 'plugin.yml'
-          sha256sum "dist/${OUTPUT_NAME}"
+          SOURCE="target/${OUTPUT_NAME}"
+          test -s "$SOURCE"
+          cp "$SOURCE" "dist/${OUTPUT_NAME}"
+          JAR="dist/${OUTPUT_NAME}"
+          jar tf "$JAR" | grep -Fxq 'plugin.yml'
+          unzip -p "$JAR" plugin.yml | grep -Fq "version: ${LEGACY_VERSION}"
+          python3 - <<'PY'
+          import pathlib, struct, zipfile
+          jar = pathlib.Path('dist') / 'SF_DankTech21.1.02.jar'
+          max_major = 0
+          with zipfile.ZipFile(jar) as zf:
+              for name in zf.namelist():
+                  if not name.endswith('.class'):
+                      continue
+                  data = zf.read(name)[:8]
+                  if data[:4] != b'\xca\xfe\xba\xbe':
+                      continue
+                  max_major = max(max_major, struct.unpack('>H', data[6:8])[0])
+          print(f'{jar}: maximum class major version {max_major}')
+          if max_major > 65:
+              raise SystemExit('JAR contains classes newer than Java 21 bytecode')
+          PY
+          sha256sum "$JAR"
       - name: Upload raw JAR artifact
         uses: actions/upload-artifact@v7
         with:
@@ -62,4 +88,5 @@ jobs:
           set -euo pipefail
           if [[ "$GITHUB_REF" == refs/tags/v* ]]; then TAG="$GITHUB_REF_NAME"; else TAG="v${LEGACY_VERSION}"; fi
           JAR="dist/${OUTPUT_NAME}"
-          if gh release view "$TAG" >/dev/null 2>&1; then gh release upload "$TAG" "$JAR" --clobber; else gh release create "$TAG" "$JAR" --target "$GITHUB_SHA" --generate-notes --title "SF_DankTech2 $TAG"; fi
+          NOTES="DankTech2 1.1.02 restores the Paper 1.21.11 / Java 21 universal release baseline, keeps Paper 26.2 as the primary production target, and adds Paper 26.3 alpha compatibility validation. Maven now emits SF_DankTech21.1.02.jar directly."
+          if gh release view "$TAG" >/dev/null 2>&1; then gh release upload "$TAG" "$JAR" --clobber; else gh release create "$TAG" "$JAR" --target "$GITHUB_SHA" --notes "$NOTES" --title "SF_DankTech2 $TAG"; fi
