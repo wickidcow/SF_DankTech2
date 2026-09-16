@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.sefiraat</groupId>
     <artifactId>DankTech2</artifactId>
-    <version>1.1.01</version>
+    <version>1.1.02</version>
     <name>DankTech2</name>
     <description>Legacy-maintained DankTech2 mass-storage backpacks for modern Paper and Slimefun runtimes.</description>
     <url>https://github.com/wickidcow/DankTech2</url>
@@ -14,180 +14,75 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.release>25</maven.compiler.release>
-        <paper.version>26.2.build.111-stable</paper.version>
+        <maven.compiler.release>21</maven.compiler.release>
+        <paper.version>1.21.11-R0.1-SNAPSHOT</paper.version>
         <slimefun.version>RC-37</slimefun.version>
         <lombok.version>1.18.44</lombok.version>
     </properties>
 
     <repositories>
-        <repository>
-            <id>papermc</id>
-            <url>https://repo.papermc.io/repository/maven-public/</url>
-        </repository>
-        <repository>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-        <repository>
-            <id>mcmmo-repo</id>
-            <url>https://nexus.neetgames.com/repository/maven-public</url>
-        </repository>
-        <repository>
-            <id>bg-repo</id>
-            <url>https://repo.bg-software.com/repository/api/</url>
-        </repository>
-        <repository>
-            <id>rosewood-repo</id>
-            <url>https://repo.rosewooddev.io/repository/public/</url>
-        </repository>
+        <repository><id>papermc</id><url>https://repo.papermc.io/repository/maven-public/</url></repository>
+        <repository><id>spigot-repo</id><url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url></repository>
+        <repository><id>jitpack.io</id><url>https://jitpack.io</url></repository>
+        <repository><id>mcmmo-repo</id><url>https://nexus.neetgames.com/repository/maven-public</url></repository>
+        <repository><id>bg-repo</id><url>https://repo.bg-software.com/repository/api/</url></repository>
+        <repository><id>rosewood-repo</id><url>https://repo.rosewooddev.io/repository/public/</url></repository>
     </repositories>
 
     <build>
-        <finalName>SF_DankTech2_1.1.01</finalName>
+        <finalName>SF_DankTech2${project.version}</finalName>
         <defaultGoal>clean package</defaultGoal>
         <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
-
         <resources>
             <resource>
                 <directory>${basedir}/src/main/resources</directory>
                 <filtering>true</filtering>
-                <includes>
-                    <include>**/*.*</include>
-                    <include>tags/*.json</include>
-                </includes>
+                <includes><include>**/*.*</include><include>tags/*.json</include></includes>
             </resource>
         </resources>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.15.0</version>
                 <configuration>
-                    <release>25</release>
+                    <release>${maven.compiler.release}</release>
                     <encoding>UTF-8</encoding>
                     <showWarnings>true</showWarnings>
                     <proc>full</proc>
                     <annotationProcessorPaths>
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                            <version>${lombok.version}</version>
-                        </path>
+                        <path><groupId>org.projectlombok</groupId><artifactId>lombok</artifactId><version>${lombok.version}</version></path>
                     </annotationProcessorPaths>
-                    <compilerArgs>
-                        <arg>-Xlint:deprecation</arg>
-                        <arg>-Xlint:unchecked</arg>
-                    </compilerArgs>
+                    <compilerArgs><arg>-Xlint:deprecation</arg><arg>-Xlint:unchecked</arg></compilerArgs>
                 </configuration>
             </plugin>
-
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.6.2</version>
+                <groupId>org.apache.maven.plugins</groupId><artifactId>maven-shade-plugin</artifactId><version>3.6.2</version>
                 <configuration>
-                    <createDependencyReducedPom>false</createDependencyReducedPom>
-                    <minimizeJar>false</minimizeJar>
+                    <createDependencyReducedPom>false</createDependencyReducedPom><minimizeJar>false</minimizeJar>
                     <relocations>
-                        <relocation>
-                            <pattern>org.bstats</pattern>
-                            <shadedPattern>io.github.sefiraat.danktech2.shaded.bstats</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>com.jeff_media.morepersistentdatatypes</pattern>
-                            <shadedPattern>io.github.sefiraat.danktech2.shaded.morepersistentdatatypes</shadedPattern>
-                        </relocation>
+                        <relocation><pattern>org.bstats</pattern><shadedPattern>io.github.sefiraat.danktech2.shaded.bstats</shadedPattern></relocation>
+                        <relocation><pattern>com.jeff_media.morepersistentdatatypes</pattern><shadedPattern>io.github.sefiraat.danktech2.shaded.morepersistentdatatypes</shadedPattern></relocation>
                     </relocations>
-                    <filters>
-                        <filter>
-                            <artifact>*:*</artifact>
-                            <excludes>
-                                <exclude>META-INF/*.SF</exclude>
-                                <exclude>META-INF/*.DSA</exclude>
-                                <exclude>META-INF/*.RSA</exclude>
-                            </excludes>
-                        </filter>
-                    </filters>
+                    <filters><filter><artifact>*:*</artifact><excludes><exclude>META-INF/*.SF</exclude><exclude>META-INF/*.DSA</exclude><exclude>META-INF/*.RSA</exclude></excludes></filter></filters>
                 </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <executions><execution><phase>package</phase><goals><goal>shade</goal></goals></execution></executions>
             </plugin>
         </plugins>
     </build>
 
     <dependencies>
+        <dependency><groupId>io.papermc.paper</groupId><artifactId>paper-api</artifactId><version>${paper.version}</version><scope>provided</scope></dependency>
         <dependency>
-            <groupId>io.papermc.paper</groupId>
-            <artifactId>paper-api</artifactId>
-            <version>${paper.version}</version>
-            <scope>provided</scope>
+            <groupId>com.github.Slimefun</groupId><artifactId>Slimefun4</artifactId><version>${slimefun.version}</version><scope>provided</scope>
+            <exclusions><exclusion><groupId>org.spigotmc</groupId><artifactId>spigot-api</artifactId></exclusion></exclusions>
         </dependency>
-
-        <dependency>
-            <groupId>com.github.Slimefun</groupId>
-            <artifactId>Slimefun4</artifactId>
-            <version>${slimefun.version}</version>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.spigotmc</groupId>
-                    <artifactId>spigot-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.bstats</groupId>
-            <artifactId>bstats-bukkit</artifactId>
-            <version>3.2.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.code.findbugs</groupId>
-            <artifactId>annotations</artifactId>
-            <version>3.0.1u2</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.jeff-media</groupId>
-            <artifactId>MorePersistentDataTypes</artifactId>
-            <version>2.4.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.gmail.nossr50.mcMMO</groupId>
-            <artifactId>mcMMO</artifactId>
-            <version>2.1.222</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.bgsoftware</groupId>
-            <artifactId>WildStackerAPI</artifactId>
-            <version>2023.2</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>dev.rosewood</groupId>
-            <artifactId>rosestacker</artifactId>
-            <version>1.5.9</version>
-            <scope>provided</scope>
-        </dependency>
+        <dependency><groupId>org.bstats</groupId><artifactId>bstats-bukkit</artifactId><version>3.2.1</version></dependency>
+        <dependency><groupId>com.google.code.findbugs</groupId><artifactId>annotations</artifactId><version>3.0.1u2</version><scope>provided</scope></dependency>
+        <dependency><groupId>org.projectlombok</groupId><artifactId>lombok</artifactId><version>${lombok.version}</version><scope>provided</scope></dependency>
+        <dependency><groupId>com.jeff-media</groupId><artifactId>MorePersistentDataTypes</artifactId><version>2.4.0</version></dependency>
+        <dependency><groupId>com.gmail.nossr50.mcMMO</groupId><artifactId>mcMMO</artifactId><version>2.1.222</version><scope>provided</scope></dependency>
+        <dependency><groupId>com.bgsoftware</groupId><artifactId>WildStackerAPI</artifactId><version>2023.2</version><scope>provided</scope></dependency>
+        <dependency><groupId>dev.rosewood</groupId><artifactId>rosestacker</artifactId><version>1.5.9</version><scope>provided</scope></dependency>
     </dependencies>
 </project>
