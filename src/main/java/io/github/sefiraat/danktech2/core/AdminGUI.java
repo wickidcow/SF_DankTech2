@@ -8,14 +8,19 @@ import io.github.sefiraat.danktech2.utils.datatypes.PersistentDankInstanceType;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdminGUI extends ChestMenu {
+
+    private static final LegacyComponentSerializer LEGACY = LegacyComponentSerializer.legacySection();
 
     protected static final int[] BACKGROUND_SLOTS = new int[]{
         0, 1, 2, 3, 4, 5, 6, 7, 8, 45, 47, 48, 49, 50, 51, 53
@@ -137,18 +142,19 @@ public class AdminGUI extends ChestMenu {
     private ItemStack getDisplayDank(ItemStack dank, DankPackInstance dankPackInstance) {
         ItemStack displayDank = dank.clone();
         ItemMeta displayMeta = displayDank.getItemMeta();
-        List<String> lore = displayMeta.getLore();
-        lore.add("");
-        lore.add(MessageFormat.format("{0}Left Click: {1}Open Dank", ThemeType.CLICK_INFO.getColor(), ThemeType.PASSIVE.getColor()));
-        lore.add(MessageFormat.format("{0}Right Click: {1}Clone Dank", ThemeType.CLICK_INFO.getColor(), ThemeType.PASSIVE.getColor()));
-        lore.add("");
-        lore.add(MessageFormat.format("{0}Warning - Cloning a DankPack", ThemeType.ERROR.getColor()));
-        lore.add(MessageFormat.format("{0}will delete the original and", ThemeType.ERROR.getColor()));
-        lore.add(MessageFormat.format("{0}remove them from players inventories", ThemeType.ERROR.getColor()));
-        lore.add(MessageFormat.format("{0}and unloaders", ThemeType.ERROR.getColor()));
-        lore.add("");
-        lore.add(MessageFormat.format("{0}Last User: {1}{2}", ThemeType.CLICK_INFO.getColor(), ThemeType.PASSIVE.getColor(), dankPackInstance.getLastUser()));
-        displayMeta.setLore(lore);
+        List<Component> currentLore = displayMeta.lore();
+        List<Component> lore = currentLore == null ? new ArrayList<>() : new ArrayList<>(currentLore);
+        lore.add(Component.empty());
+        lore.add(LEGACY.deserialize(MessageFormat.format("{0}Left Click: {1}Open Dank", ThemeType.CLICK_INFO.getColor(), ThemeType.PASSIVE.getColor())));
+        lore.add(LEGACY.deserialize(MessageFormat.format("{0}Right Click: {1}Clone Dank", ThemeType.CLICK_INFO.getColor(), ThemeType.PASSIVE.getColor())));
+        lore.add(Component.empty());
+        lore.add(LEGACY.deserialize(MessageFormat.format("{0}Warning - Cloning a DankPack", ThemeType.ERROR.getColor())));
+        lore.add(LEGACY.deserialize(MessageFormat.format("{0}will delete the original and", ThemeType.ERROR.getColor())));
+        lore.add(LEGACY.deserialize(MessageFormat.format("{0}remove them from players inventories", ThemeType.ERROR.getColor())));
+        lore.add(LEGACY.deserialize(MessageFormat.format("{0}and unloaders", ThemeType.ERROR.getColor())));
+        lore.add(Component.empty());
+        lore.add(LEGACY.deserialize(MessageFormat.format("{0}Last User: {1}{2}", ThemeType.CLICK_INFO.getColor(), ThemeType.PASSIVE.getColor(), dankPackInstance.getLastUser())));
+        displayMeta.lore(lore);
         displayDank.setItemMeta(displayMeta);
         return displayDank;
     }
