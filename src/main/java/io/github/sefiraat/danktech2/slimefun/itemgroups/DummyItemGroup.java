@@ -16,8 +16,8 @@ public class DummyItemGroup extends ItemGroup {
 
     @Override
     @ParametersAreNonnullByDefault
-    public boolean isHidden(Player p) {
-        return true;
+    public boolean isVisible(Player p) {
+        return false;
     }
 
 }
