@@ -14,7 +14,6 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -23,8 +22,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.text.MessageFormat;
 
 public class DankGUI extends ChestMenu {
-
-    private static final LegacyComponentSerializer LEGACY = LegacyComponentSerializer.legacySection();
 
     protected static final int[] BACKGROUND_SLOTS = new int[]{
         0, 1, 2, 3, 5, 6, 7, 8, 36, 37, 38, 39, 40, 41, 42, 43, 44
@@ -266,7 +263,7 @@ public class DankGUI extends ChestMenu {
 
     @Override
     public void open(Player... players) {
-        this.packInstance.setLastUser(LEGACY.serialize(players[0].displayName()));
+        this.packInstance.setLastUser(players[0].getDisplayName());
         saveInstance();
         super.open(players);
     }
