@@ -2,8 +2,6 @@ package io.github.sefiraat.danktech2.diagnostics;
 
 import io.github.sefiraat.danktech2.DankTech2;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -24,8 +22,6 @@ import org.bukkit.plugin.ServicesManager;
 
 /** Optional reflective bridge to Slimefun Legacy's fingerprinted Doctor schema migration API. */
 public final class LegacyDoctorBridge {
-
-    private static final PlainTextComponentSerializer PLAIN = PlainTextComponentSerializer.plainText();
 
     private static final String SCHEMA_PROBE_API =
         "io.github.thebusybiscuit.slimefun4.api.diagnostics.LegacyItemSchemaProbe";
@@ -219,12 +215,10 @@ public final class LegacyDoctorBridge {
 
         ItemMeta current = item.getItemMeta();
         ItemMeta canonical = slimefunItem.getItem().getItemMeta();
-        Component currentName = current.hasDisplayName() ? current.displayName() : null;
-        List<Component> currentLore = current.hasLore() ? current.lore() : null;
-        Component canonicalName = canonical.hasDisplayName() ? canonical.displayName() : null;
-        List<Component> canonicalLore = canonical.hasLore() ? canonical.lore() : null;
-        boolean currentHasCjk = containsCjk(currentName) || containsCjk(currentLore);
-        boolean canonicalIsEnglish = !containsCjk(canonicalName) && !containsCjk(canonicalLore);
+        boolean currentHasCjk = (current.hasDisplayName() && containsCjk(current.getDisplayName()))
+            || (current.hasLore() && containsCjk(current.getLore()));
+        boolean canonicalIsEnglish = (!canonical.hasDisplayName() || !containsCjk(canonical.getDisplayName()))
+            && (!canonical.hasLore() || !containsCjk(canonical.getLore()));
         return currentHasCjk && canonicalIsEnglish;
     }
 
@@ -238,17 +232,19 @@ public final class LegacyDoctorBridge {
         ItemMeta canonical = slimefunItem.getItem().getItemMeta();
         boolean changed = false;
 
-        Component currentName = current.hasDisplayName() ? current.displayName() : null;
-        Component canonicalName = canonical.hasDisplayName() ? canonical.displayName() : null;
-        if (containsCjk(currentName) && canonicalName != null && !containsCjk(canonicalName)) {
-            current.displayName(canonicalName);
+        if (current.hasDisplayName()
+            && containsCjk(current.getDisplayName())
+            && canonical.hasDisplayName()
+            && !containsCjk(canonical.getDisplayName())) {
+            current.setDisplayName(canonical.getDisplayName());
             changed = true;
         }
 
-        List<Component> currentLore = current.hasLore() ? current.lore() : null;
-        List<Component> canonicalLore = canonical.hasLore() ? canonical.lore() : null;
-        if (containsCjk(currentLore) && canonicalLore != null && !containsCjk(canonicalLore)) {
-            current.lore(mergeStaticLore(currentLore, canonicalLore));
+        if (current.hasLore()
+            && containsCjk(current.getLore())
+            && canonical.hasLore()
+            && !containsCjk(canonical.getLore())) {
+            current.setLore(mergeStaticLore(current.getLore(), canonical.getLore()));
             changed = true;
         }
 
@@ -259,20 +255,20 @@ public final class LegacyDoctorBridge {
         return changed;
     }
 
-    private static List<Component> mergeStaticLore(List<Component> currentLore, List<Component> canonicalLore) {
-        List<Component> result = new ArrayList<>(currentLore);
+    private static List<String> mergeStaticLore(List<String> currentLore, List<String> canonicalLore) {
+        List<String> result = new ArrayList<>(currentLore);
         for (int i = 0; i < currentLore.size(); i++) {
-            Component line = currentLore.get(i);
+            String line = currentLore.get(i);
             if (!containsCjk(line)) {
                 continue;
             }
-            result.set(i, i < canonicalLore.size() ? canonicalLore.get(i) : Component.empty());
+            result.set(i, i < canonicalLore.size() ? canonicalLore.get(i) : "");
         }
 
         for (int i = result.size(); i < canonicalLore.size(); i++) {
             result.add(canonicalLore.get(i));
         }
-        while (!result.isEmpty() && PLAIN.serialize(result.get(result.size() - 1)).isEmpty()) {
+        while (!result.isEmpty() && result.get(result.size() - 1).isEmpty()) {
             result.remove(result.size() - 1);
         }
         return result;
@@ -287,11 +283,11 @@ public final class LegacyDoctorBridge {
         }
     }
 
-    private static boolean containsCjk(List<Component> lines) {
+    private static boolean containsCjk(List<String> lines) {
         if (lines == null) {
             return false;
         }
-        for (Component line : lines) {
+        for (String line : lines) {
             if (containsCjk(line)) {
                 return true;
             }
@@ -299,11 +295,7 @@ public final class LegacyDoctorBridge {
         return false;
     }
 
-    private static boolean containsCjk(Component component) {
-        return component != null && containsCjkText(PLAIN.serialize(component));
-    }
-
-    private static boolean containsCjkText(String text) {
+    private static boolean containsCjk(String text) {
         if (text == null || text.isEmpty()) {
             return false;
         }
