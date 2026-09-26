@@ -3,10 +3,7 @@ package io.github.sefiraat.danktech2.theme;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import lombok.Getter;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextColor;
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -21,29 +18,29 @@ import java.util.concurrent.ThreadLocalRandom;
 
 @Getter
 public enum ThemeType {
-    WARNING(NamedTextColor.YELLOW, "Warning"),
-    ERROR(NamedTextColor.RED, "Error"),
-    NOTICE(NamedTextColor.WHITE, "Notice"),
-    PASSIVE(NamedTextColor.GRAY, ""),
-    SUCCESS(NamedTextColor.GREEN, "Success"),
-    MAIN(TextColor.color(0x21588f), "DankTech2"),
-    CLICK_INFO(TextColor.color(0xe4ed32), "Click here"),
-    CRAFTING(TextColor.color(0xdbcea9), "Crafting Material"),
-    MACHINE(TextColor.color(0x3295a8), "Machine"),
-    GUIDE(TextColor.color(0x444444), "TrashPack"),
-    CHEST(TextColor.color(0xb89b1c), "DankPack"),
-    DROP(TextColor.color(0xbf307f), "Rare Drop"),
-    BASE(TextColor.color(0x9e9e9e), "Base Resource"),
-    INFO(TextColor.color(0x21588f), "Information"),
-    T1(TextColor.color(0xdeebff), "Tier 1"),
-    T2(TextColor.color(0xb8b8b8), "Tier 2"),
-    T3(TextColor.color(0xb5ff9e), "Tier 3"),
-    T4(TextColor.color(0x34a112), "Tier 4"),
-    T5(TextColor.color(0x467dcf), "Tier 5"),
-    T6(TextColor.color(0x083578), "Tier 6"),
-    T7(TextColor.color(0xec8cff), "Tier 7"),
-    T8(TextColor.color(0xb70bd9), "Tier 8"),
-    T9(TextColor.color(0xa60000), "Tier 9");
+    WARNING(ChatColor.YELLOW, "Warning"),
+    ERROR(ChatColor.RED, "Error"),
+    NOTICE(ChatColor.WHITE, "Notice"),
+    PASSIVE(ChatColor.GRAY, ""),
+    SUCCESS(ChatColor.GREEN, "Success"),
+    MAIN(ChatColor.of("#21588f"), "DankTech2"),
+    CLICK_INFO(ChatColor.of("#e4ed32"), "Click here"),
+    CRAFTING(ChatColor.of("#dbcea9"), "Crafting Material"),
+    MACHINE(ChatColor.of("#3295a8"), "Machine"),
+    GUIDE(ChatColor.of("#444444"), "TrashPack"),
+    CHEST(ChatColor.of("#b89b1c"), "DankPack"),
+    DROP(ChatColor.of("#bf307f"), "Rare Drop"),
+    BASE(ChatColor.of("#9e9e9e"), "Base Resource"),
+    INFO(ChatColor.of("#21588f"), "Information"),
+    T1(ChatColor.of("#deebff"), "Tier 1"),
+    T2(ChatColor.of("#b8b8b8"), "Tier 2"),
+    T3(ChatColor.of("#b5ff9e"), "Tier 3"),
+    T4(ChatColor.of("#34a112"), "Tier 4"),
+    T5(ChatColor.of("#467dcf"), "Tier 5"),
+    T6(ChatColor.of("#083578"), "Tier 6"),
+    T7(ChatColor.of("#ec8cff"), "Tier 7"),
+    T8(ChatColor.of("#b70bd9"), "Tier 8"),
+    T9(ChatColor.of("#a60000"), "Tier 9");
 
     @Nonnull
     protected static final List<String> EGG_NAMES = Arrays.asList(
@@ -79,19 +76,12 @@ public enum ThemeType {
 
     @Getter
     protected static final ThemeType[] cachedValues = values();
-    private static final LegacyComponentSerializer LEGACY = LegacyComponentSerializer.legacySection();
-
-    private final TextColor textColor;
+    private final ChatColor color;
     private final String loreLine;
 
-    ThemeType(TextColor textColor, String loreLine) {
-        this.textColor = textColor;
+    ThemeType(ChatColor color, String loreLine) {
+        this.color = color;
         this.loreLine = loreLine;
-    }
-
-    public String getColor() {
-        String serialized = LEGACY.serialize(Component.text("x", textColor));
-        return serialized.substring(0, serialized.length() - 1);
     }
 
     /**
@@ -125,7 +115,7 @@ public enum ThemeType {
                                                             String name,
                                                             String... lore
     ) {
-        String passiveColor = ThemeType.PASSIVE.getColor();
+        ChatColor passiveColor = ThemeType.PASSIVE.getColor();
         List<String> finalLore = new ArrayList<>();
         finalLore.add("");
         for (String s : lore) {
@@ -214,9 +204,9 @@ public enum ThemeType {
     public Particle.DustOptions getDustOptions(float size) {
         return new Particle.DustOptions(
             Color.fromRGB(
-                (textColor.value() >> 16) & 0xFF,
-                (textColor.value() >> 8) & 0xFF,
-                textColor.value() & 0xFF
+                color.getColor().getRed(),
+                color.getColor().getGreen(),
+                color.getColor().getBlue()
             ),
             size
         );
