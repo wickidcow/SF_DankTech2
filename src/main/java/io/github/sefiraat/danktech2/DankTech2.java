@@ -19,7 +19,6 @@ import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.AdvancedPie;
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.PluginManager;
@@ -32,8 +31,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DankTech2 extends JavaPlugin implements SlimefunAddon {
-
-    private static final LegacyComponentSerializer LEGACY = LegacyComponentSerializer.legacySection();
 
     private static DankTech2 instance;
 
@@ -87,7 +84,7 @@ public class DankTech2 extends JavaPlugin implements SlimefunAddon {
     }
 
     public void tryUpdate() {
-        if (getConfig().getBoolean("auto-update") && getPluginMeta().getVersion().startsWith("DEV")) {
+        if (getConfig().getBoolean("auto-update") && getDescription().getVersion().startsWith("DEV")) {
             String updateLocation = MessageFormat.format("{0}/{1}/{2}", this.username, this.repo, this.branch);
             updater = new GitHubBuildsUpdater(this, getFile(), updateLocation);
             updater.start();
@@ -146,7 +143,7 @@ public class DankTech2 extends JavaPlugin implements SlimefunAddon {
 
                 final ItemMeta itemMeta = heldItem.getItemMeta();
                 final String name = itemMeta.hasDisplayName()
-                    ? LEGACY.serialize(itemMeta.displayName())
+                    ? itemMeta.getDisplayName()
                     : ThemeType.toTitleCase(heldItem.getType().toString());
 
                 Integer itemAmount = heldItemValues.get(name);
