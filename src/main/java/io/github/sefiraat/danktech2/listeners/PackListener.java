@@ -17,8 +17,7 @@ import io.github.sefiraat.danktech2.utils.datatypes.PersistentTrashInstanceType;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
@@ -35,6 +34,8 @@ import java.text.MessageFormat;
 import java.util.Collection;
 
 public class PackListener implements Listener {
+
+    private static final LegacyComponentSerializer LEGACY = LegacyComponentSerializer.legacySection();
 
     @EventHandler
     public void onUsePack(PlayerInteractEvent event) {
@@ -112,15 +113,12 @@ public class PackListener implements Listener {
         int slot = DataTypeMethods.incrementSelectedSlot(heldItem);
         ItemStack itemStack = dankPackInstance.getItem(slot);
         String name = itemStack == null ? "Nothing" : ThemeType.toTitleCase(itemStack.getType().toString());
-        player.spigot().sendMessage(
-            ChatMessageType.ACTION_BAR,
-            TextComponent.fromLegacyText(MessageFormat.format(
-                "{0}Selected slot: [{1}] - [{2}]",
-                ThemeType.SUCCESS.getColor(),
-                slot + 1,
-                name)
-            )
-        );
+        player.sendActionBar(LEGACY.deserialize(MessageFormat.format(
+            "{0}Selected slot: [{1}] - [{2}]",
+            ThemeType.SUCCESS.getColor(),
+            slot + 1,
+            name
+        )));
     }
 
     private void tryBuild(ItemStack heldItem, ItemMeta itemMeta, DankPackInstance dankPackInstance, Block block, Player player) {
@@ -128,23 +126,17 @@ public class PackListener implements Listener {
         int amount = dankPackInstance.getAmount(selectedSlot);
         ItemStack stackToPlace = dankPackInstance.getItem(selectedSlot);
         if (amount <= 1) {
-            player.spigot().sendMessage(
-                ChatMessageType.ACTION_BAR,
-                TextComponent.fromLegacyText(MessageFormat.format(
-                    "{0}Not enough {1} left!",
-                    ThemeType.ERROR.getColor(),
-                    ThemeType.toTitleCase(stackToPlace.getType().toString()))
-                )
-            );
+            player.sendActionBar(LEGACY.deserialize(MessageFormat.format(
+                "{0}Not enough {1} left!",
+                ThemeType.ERROR.getColor(),
+                ThemeType.toTitleCase(stackToPlace.getType().toString())
+            )));
         } else if (!stackToPlace.getType().isBlock() || stackToPlace.hasItemMeta()) {
-            player.spigot().sendMessage(
-                ChatMessageType.ACTION_BAR,
-                TextComponent.fromLegacyText(MessageFormat.format(
-                    "{0}{1} cannot be placed like this.",
-                    ThemeType.ERROR.getColor(),
-                    ThemeType.toTitleCase(stackToPlace.getType().toString()))
-                )
-            );
+            player.sendActionBar(LEGACY.deserialize(MessageFormat.format(
+                "{0}{1} cannot be placed like this.",
+                ThemeType.ERROR.getColor(),
+                ThemeType.toTitleCase(stackToPlace.getType().toString())
+            )));
         } else {
             if (isSafeToBuild(block, player)) {
                 dankPackInstance.setAmount(selectedSlot, amount - 1);

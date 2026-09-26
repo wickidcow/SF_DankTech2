@@ -84,7 +84,7 @@ public class DankTech2 extends JavaPlugin implements SlimefunAddon {
     }
 
     public void tryUpdate() {
-        if (getConfig().getBoolean("auto-update") && getDescription().getVersion().startsWith("DEV")) {
+        if (getConfig().getBoolean("auto-update") && getPluginMeta().getVersion().startsWith("DEV")) {
             String updateLocation = MessageFormat.format("{0}/{1}/{2}", this.username, this.repo, this.branch);
             updater = new GitHubBuildsUpdater(this, getFile(), updateLocation);
             updater.start();

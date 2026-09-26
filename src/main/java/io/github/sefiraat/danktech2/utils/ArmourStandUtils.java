@@ -3,6 +3,7 @@ package io.github.sefiraat.danktech2.utils;
 import io.github.sefiraat.danktech2.theme.ThemeType;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import lombok.experimental.UtilityClass;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
@@ -25,7 +26,7 @@ public class ArmourStandUtils {
         armorStand.setInvulnerable(true);
         armorStand.setMarker(true);
         armorStand.setSilent(false);
-        armorStand.setCustomName(ThemeType.getRandomEggName());
+        armorStand.customName(Component.text(ThemeType.getRandomEggName()));
         PersistentDataAPI.setBoolean(armorStand, Keys.DISPLAY_STAND, true);
     }
 
