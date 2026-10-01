@@ -18,6 +18,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.util.logging.Level;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,9 +32,10 @@ public class ConfigManager {
     private final FileConfiguration dankPacks;
 
     public ConfigManager() {
-        instance = this;
+        instance = null;
         DankTech2.getInstance().saveDefaultConfig();
         this.dankPacks = getConfig("dank_packs.yml", false);
+        instance = this;
     }
 
     /**
@@ -40,20 +44,21 @@ public class ConfigManager {
     private FileConfiguration getConfig(String fileName, boolean updateWithDefaults) {
         final DankTech2 plugin = DankTech2.getInstance();
         final File file = new File(plugin.getDataFolder(), fileName);
-        if (!file.exists()) {
+        if (!Files.exists(file.toPath(), LinkOption.NOFOLLOW_LINKS)) {
             file.getParentFile().mkdirs();
-            plugin.saveResource(fileName, true);
+            plugin.saveResource(fileName, false);
         }
-        final FileConfiguration config = new YamlConfiguration();
         try {
-            config.load(file);
+            final FileConfiguration config = PackRegistryFile.load(file.toPath());
             if (updateWithDefaults) {
                 updateConfig(config, file, fileName);
             }
+            return config;
         } catch (IOException | InvalidConfigurationException e) {
-            e.printStackTrace();
+            throw new IllegalStateException("Unable to load " + fileName
+                + "; DankTech2 is stopping to preserve the existing pack registry."
+                + " Restore or repair the original file before restarting.", e);
         }
-        return config;
     }
 
     private void updateConfig(FileConfiguration config, File file, String fileName) throws IOException {
@@ -73,9 +78,10 @@ public class ConfigManager {
     private void saveConfig(FileConfiguration configuration, String filename) {
         File file = new File(DankTech2.getInstance().getDataFolder(), filename);
         try {
-            configuration.save(file);
-        } catch (IOException exception) {
-            exception.printStackTrace();
+            PackRegistryFile.save(configuration, file.toPath());
+        } catch (IOException | RuntimeException exception) {
+            DankTech2.getInstance().getLogger().log(Level.SEVERE,
+                "Unable to save " + filename + "; the previous registry was not intentionally truncated.", exception);
         }
     }
 
