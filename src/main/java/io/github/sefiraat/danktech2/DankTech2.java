@@ -62,11 +62,12 @@ public class DankTech2 extends JavaPlugin implements SlimefunAddon {
         getLogger().info("       DankTech2 - Legacy Maintained    ");
         getLogger().info("########################################");
 
+        // A failed pack registry must stop startup before any item handler can treat packs as deleted.
+        this.configManager = new ConfigManager();
         tryUpdate();
         setupSlimefun();
         LegacyDoctorBridge.register(this);
 
-        this.configManager = new ConfigManager();
         this.listenerManager = new ListenerManager();
         this.supportedPluginManager = new SupportedPluginManager();
         this.runnableManager = new RunnableManager();

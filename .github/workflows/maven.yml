@@ -37,14 +37,16 @@ jobs:
           grep -Fq '<maven.compiler.release>21</maven.compiler.release>' pom.xml
           grep -Fq '<finalName>SF_DankTech2${project.version}</finalName>' pom.xml
           grep -Fq "api-version: '1.21'" src/main/resources/plugin.yml
+      - name: Verify registry startup boundary
+        run: python3 scripts/verify_pack_registry_safety.py
       - name: Verify Paper 1.21.11 baseline compilation
         run: mvn -B -Dmaven.test.skip=true -Dpaper.version=1.21.11-R0.1-SNAPSHOT clean package --file pom.xml
       - name: Verify Paper 26.2 compilation
         run: mvn -B -Dmaven.test.skip=true -Dpaper.version=26.2.build.112-stable clean package --file pom.xml
       - name: Verify Paper 26.3 alpha compilation
         run: mvn -B -Dmaven.test.skip=true -Dpaper.version=26.3-rc-3.build.1-alpha clean package --file pom.xml
-      - name: Build universal release JAR from 1.21.11 baseline
-        run: mvn -B -Dmaven.test.skip=true -Dpaper.version=1.21.11-R0.1-SNAPSHOT clean package --file pom.xml
+      - name: Build and test universal release JAR from 1.21.11 baseline
+        run: mvn -B -Dpaper.version=1.21.11-R0.1-SNAPSHOT clean package --file pom.xml
       - name: Stage and verify versioned JAR
         shell: bash
         run: |
@@ -73,6 +75,13 @@ jobs:
               raise SystemExit('JAR contains classes newer than Java 21 bytecode')
           PY
           sha256sum "$JAR"
+      - name: Retain registry test reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: registry-test-evidence
+          path: target/surefire-reports/TEST-*.xml
+          if-no-files-found: warn
       - name: Upload raw JAR artifact
         uses: actions/upload-artifact@v7
         with:
