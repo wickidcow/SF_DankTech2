@@ -125,6 +125,12 @@ public class PackListener implements Listener {
         int selectedSlot = DataTypeMethods.getSelectedSlot(heldItem);
         int amount = dankPackInstance.getAmount(selectedSlot);
         ItemStack stackToPlace = dankPackInstance.getItem(selectedSlot);
+        if (stackToPlace == null || stackToPlace.getType().isAir()) {
+            player.sendActionBar(LEGACY.deserialize(
+                ThemeType.WARNING.getColor() + "Selected slot is empty."
+            ));
+            return;
+        }
         if (amount <= 1) {
             player.sendActionBar(LEGACY.deserialize(MessageFormat.format(
                 "{0}Not enough {1} left!",

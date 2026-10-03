@@ -1,0 +1,104 @@
+[11:56:56 INFO]: Starting minecraft server version 26.3
+[11:56:57 INFO]: [PackPreservationProbe] Loading server plugin PackPreservationProbe v1.0
+[11:56:57 INFO]: [Slimefun] Enabling Slimefun v4.1.67
+[11:56:59 INFO]: [DankTech2] Enabling DankTech2 v1.1.03
+[11:56:59 INFO]: [PackPreservationProbe] Enabling PackPreservationProbe v1.0
+[11:57:00 INFO]: [DankTech2] DankTech2 saving data.
+[11:57:00 INFO]: Done (10.031s)! For help, type "help"
+[11:57:03 INFO]: [DankTech2] DankTech2 saving data.
+[11:57:03 INFO]: [PackPreservationProbe] OK probe runs on the real Paper server thread
+[11:57:03 INFO]: [PackPreservationProbe] OK published Slimefun enabled
+[11:57:03 INFO]: [PackPreservationProbe] OK DankTech2 enabled
+[11:57:03 INFO]: [PackPreservationProbe] OK exact requested DankTech2 1.1.03 loaded
+[11:57:03 INFO]: [PackPreservationProbe] SERVER 26.3-143-ff3655a (MC: 26.3)
+[11:57:03 INFO]: [PackPreservationProbe] JAVA 25.0.4.1
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 2 changes only tier inside exact stored PDC
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 2 leaves source metadata unchanged
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 2 retains output display name
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 2 preserves full long ID and filter array
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 3 changes only tier inside exact stored PDC
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 3 leaves source metadata unchanged
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 3 retains output display name
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 3 preserves full long ID and filter array
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 4 changes only tier inside exact stored PDC
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 4 leaves source metadata unchanged
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 4 retains output display name
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 4 preserves full long ID and filter array
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 5 changes only tier inside exact stored PDC
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 5 leaves source metadata unchanged
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 5 retains output display name
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 5 preserves full long ID and filter array
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 6 changes only tier inside exact stored PDC
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 6 leaves source metadata unchanged
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 6 retains output display name
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 6 preserves full long ID and filter array
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 7 changes only tier inside exact stored PDC
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 7 leaves source metadata unchanged
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 7 retains output display name
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 7 preserves full long ID and filter array
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 8 changes only tier inside exact stored PDC
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 8 leaves source metadata unchanged
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 8 retains output display name
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 8 preserves full long ID and filter array
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 9 changes only tier inside exact stored PDC
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 9 leaves source metadata unchanged
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 9 retains output display name
+[11:57:03 INFO]: [PackPreservationProbe] OK Trash tier 9 preserves full long ID and filter array
+[11:57:03 INFO]: [PackPreservationProbe] OK initial historical Trash payload never mutated by upgrade chain
+[11:57:03 INFO]: [PackPreservationProbe] OK first Trash craft creates an empty historical 18-slot instance
+[11:57:03 INFO]: [PackPreservationProbe] OK malformed existing Trash instance refused without replacing or mutating it
+[11:57:03 INFO]: [PackPreservationProbe] OK Dank tier, exact owner, nine item/count slots and maximum count preserved
+[11:57:03 INFO]: [PackPreservationProbe] OK stored items retain rich nested metadata
+[11:57:03 INFO]: [PackPreservationProbe] OK unknown FLOAT, BYTE_ARRAY and nested LONG fields retain exact types and values
+[11:57:03 INFO]: [PackPreservationProbe] OK admin preparation retains full 64-bit replacement ID
+[11:57:03 INFO]: [PackPreservationProbe] OK admin preparation changes only the ID
+[11:57:03 INFO]: [PackPreservationProbe] OK admin preparation never mutates source item
+[11:57:03 INFO]: [PackPreservationProbe] OK admin clone skips original and occupied long IDs
+[11:57:03 INFO]: [PackPreservationProbe] CAPACITY-INVENTORY org.bukkit.craftbukkit.inventory.CraftInventoryCustom
+[11:57:03 INFO]: [PackPreservationProbe] OK full native inventory refuses clone without any registry or inventory mutation
+[11:57:03 INFO]: [PackPreservationProbe] OK partial native insertion restores all storage slots before refusing clone
+[11:57:03 INFO]: [PackPreservationProbe] OK refused registry save restores native inventory and keeps only original identity
+[11:57:03 INFO]: [PackPreservationProbe] OK failed registry save restores native inventory and keeps only original identity
+[11:57:03 INFO]: [PackPreservationProbe] OK malformed Dank ID refused before inventory or registry mutation
+[11:57:03 INFO]: [PackPreservationProbe] OK real ConfigManager registers original high-ID Dank Pack
+[11:57:03 INFO]: [PackPreservationProbe] INVENTORY org.bukkit.craftbukkit.inventory.CraftInventory
+[11:57:03 INFO]: [PackPreservationProbe] OK replacement delivered before real registry save
+[11:57:03 INFO]: [PackPreservationProbe] OK original remains registered during new save
+[11:57:03 INFO]: [PackPreservationProbe] OK real ConfigManager accepted replacement
+[11:57:03 INFO]: [PackPreservationProbe] OK successful clone deletes only original ID
+[11:57:03 INFO]: [PackPreservationProbe] OK replacement remains registered before old deletion
+[11:57:03 INFO]: [PackPreservationProbe] OK real chest and ConfigManager accept clone
+[11:57:03 INFO]: [PackPreservationProbe] OK successful order is delivery then registry save then original deletion
+[11:57:03 INFO]: [PackPreservationProbe] OK real delivered clone preserves complete rich item payload
+[11:57:03 INFO]: [PackPreservationProbe] OK old identity invalidated after successful clone
+[11:57:03 INFO]: [PackPreservationProbe] OK stale admin menu refused without inventory change
+[11:57:03 INFO]: [PackPreservationProbe] GUI-SCOPE Real Paper menu instances and registry; tracked Player-interface proxy, no connected player.
+[11:57:03 INFO]: [PackPreservationProbe] OK stale Admin left click reports refusal and closes the tracked API view
+[11:57:03 INFO]: [PackPreservationProbe] OK stale Admin left click leaves original payload and replacement registry unchanged before any cursor/inventory access
+[11:57:03 INFO]: [PackPreservationProbe] OK stale Dank open reports refusal and closes the tracked API view
+[11:57:03 INFO]: [PackPreservationProbe] OK stale Dank open leaves original payload and replacement registry unchanged before any cursor/inventory access
+[11:57:03 INFO]: [PackPreservationProbe] OK stale empty-slot deposit reports refusal and closes the tracked API view
+[11:57:03 INFO]: [PackPreservationProbe] OK stale empty-slot deposit leaves original payload and replacement registry unchanged before any cursor/inventory access
+[11:57:03 INFO]: [PackPreservationProbe] OK stale existing-slot deposit reports refusal and closes the tracked API view
+[11:57:03 INFO]: [PackPreservationProbe] OK stale existing-slot deposit leaves original payload and replacement registry unchanged before any cursor/inventory access
+[11:57:03 INFO]: [PackPreservationProbe] OK stale withdraw one reports refusal and closes the tracked API view
+[11:57:03 INFO]: [PackPreservationProbe] OK stale withdraw one leaves original payload and replacement registry unchanged before any cursor/inventory access
+[11:57:03 INFO]: [PackPreservationProbe] OK stale withdraw stack reports refusal and closes the tracked API view
+[11:57:03 INFO]: [PackPreservationProbe] OK stale withdraw stack leaves original payload and replacement registry unchanged before any cursor/inventory access
+[11:57:03 INFO]: [PackPreservationProbe] OK stale inventory deposit reports refusal and closes the tracked API view
+[11:57:03 INFO]: [PackPreservationProbe] OK stale inventory deposit leaves original payload and replacement registry unchanged before any cursor/inventory access
+[11:57:03 INFO]: [PackPreservationProbe] OK stale fill inventory reports refusal and closes the tracked API view
+[11:57:03 INFO]: [PackPreservationProbe] OK stale fill inventory leaves original payload and replacement registry unchanged before any cursor/inventory access
+[11:57:03 INFO]: [PackPreservationProbe] OK stale final-item withdrawal and slot clear reports refusal and closes the tracked API view
+[11:57:03 INFO]: [PackPreservationProbe] OK stale final-item withdrawal and slot clear leaves original payload and replacement registry unchanged before any cursor/inventory access
+[11:57:03 INFO]: [PackPreservationProbe] OK actual registry retains Long.MAX_VALUE identity
+[11:57:03 INFO]: [PackPreservationProbe] OK native expected-item round trip preserves every serialized component and all typed PDC
+[11:57:03 INFO]: [PackPreservationProbe] OK native expected-item round trip preserves every serialized component and all typed PDC
+[11:57:03 INFO]: [PackPreservationProbe] OK native expected-item round trip preserves every serialized component and all typed PDC
+[11:57:03 INFO]: [PackPreservationProbe] OK native expected-item round trip preserves every serialized component and all typed PDC
+[11:57:03 INFO]: [PackPreservationProbe] OK actual pack registry written before clean shutdown
+[11:57:03 INFO]: [PackPreservationProbe] PASS first
+[11:57:03 INFO]: Stopping server
+[11:57:03 INFO]: [PackPreservationProbe] Disabling PackPreservationProbe v1.0
+[11:57:03 INFO]: [DankTech2] Disabling DankTech2 v1.1.03
+[11:57:03 INFO]: [DankTech2] DankTech2 saving data.

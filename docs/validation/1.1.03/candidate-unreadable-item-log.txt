@@ -1,0 +1,55 @@
+[11:57:36 INFO]: Starting minecraft server version 26.3
+[11:57:37 INFO]: [PackPreservationProbe] Loading server plugin PackPreservationProbe v1.0
+[11:57:37 INFO]: [Slimefun] Enabling Slimefun v4.1.67
+[11:57:39 INFO]: [DankTech2] Enabling DankTech2 v1.1.03
+[11:57:39 ERROR]: Error occurred while enabling DankTech2 v1.1.03 (Is it up to date?)
+java.lang.IllegalStateException: Unable to load dank_packs.yml; DankTech2 is stopping to preserve the existing pack registry. Restore or repair the original file before restarting.
+	at DankTech2.jar//io.github.sefiraat.danktech2.managers.ConfigManager.getConfig(ConfigManager.java:58) ~[?:?]
+	at DankTech2.jar//io.github.sefiraat.danktech2.managers.ConfigManager.<init>(ConfigManager.java:37) ~[?:?]
+	at DankTech2.jar//io.github.sefiraat.danktech2.DankTech2.onEnable(DankTech2.java:66) ~[?:?]
+	at org.bukkit.plugin.java.JavaPlugin.setEnabled(JavaPlugin.java:280) ~[paper-api-26.3.build.143-beta.jar:?]
+	at io.papermc.paper.plugin.manager.PaperPluginInstanceManager.enablePlugin(PaperPluginInstanceManager.java:201) ~[paper-26.3.jar:26.3-143-ff3655a]
+	at io.papermc.paper.plugin.manager.PaperPluginManagerImpl.enablePlugin(PaperPluginManagerImpl.java:109) ~[paper-26.3.jar:26.3-143-ff3655a]
+	at org.bukkit.plugin.SimplePluginManager.enablePlugin(SimplePluginManager.java:519) ~[paper-api-26.3.build.143-beta.jar:?]
+	at org.bukkit.craftbukkit.CraftServer.enablePlugin(CraftServer.java:636) ~[paper-26.3.jar:26.3-143-ff3655a]
+	at org.bukkit.craftbukkit.CraftServer.enablePlugins(CraftServer.java:593) ~[paper-26.3.jar:26.3-143-ff3655a]
+	at net.minecraft.server.MinecraftServer.initPostWorld(MinecraftServer.java:641) ~[paper-26.3.jar:26.3-143-ff3655a]
+	at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:343) ~[paper-26.3.jar:26.3-143-ff3655a]
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1248) ~[paper-26.3.jar:26.3-143-ff3655a]
+	at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:298) ~[paper-26.3.jar:26.3-143-ff3655a]
+	at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+Caused by: org.bukkit.configuration.InvalidConfigurationException: Unable to read the complete pack registry.
+	at DankTech2.jar//io.github.sefiraat.danktech2.managers.PackRegistryFile.load(PackRegistryFile.java:86) ~[?:?]
+	at DankTech2.jar//io.github.sefiraat.danktech2.managers.ConfigManager.getConfig(ConfigManager.java:52) ~[?:?]
+	... 13 more
+Caused by: org.yaml.snakeyaml.error.YAMLException: Could not deserialize object
+	at org.bukkit.configuration.file.YamlConstructor$ConstructCustomObject.construct(YamlConstructor.java:60) ~[paper-api-26.3.build.143-beta.jar:?]
+	at org.yaml.snakeyaml.constructor.BaseConstructor.constructObjectNoCheck(BaseConstructor.java:264) ~[snakeyaml-2.2.jar:?]
+	at org.yaml.snakeyaml.constructor.BaseConstructor.constructObject(BaseConstructor.java:247) ~[snakeyaml-2.2.jar:?]
+	at DankTech2.jar//io.github.sefiraat.danktech2.managers.PackRegistryFile$StrictRegistryConstructor.constructObject(PackRegistryFile.java:158) ~[?:?]
+	at org.yaml.snakeyaml.constructor.BaseConstructor.constructMapping2ndStep(BaseConstructor.java:576) ~[snakeyaml-2.2.jar:?]
+	at org.yaml.snakeyaml.constructor.SafeConstructor.constructMapping2ndStep(SafeConstructor.java:210) ~[snakeyaml-2.2.jar:?]
+	at org.yaml.snakeyaml.constructor.BaseConstructor.constructMapping(BaseConstructor.java:552) ~[snakeyaml-2.2.jar:?]
+	at org.yaml.snakeyaml.constructor.SafeConstructor$ConstructYamlMap.construct(SafeConstructor.java:597) ~[snakeyaml-2.2.jar:?]
+	at org.bukkit.configuration.file.YamlConstructor$ConstructCustomObject.construct(YamlConstructor.java:49) ~[paper-api-26.3.build.143-beta.jar:?]
+	at org.yaml.snakeyaml.constructor.BaseConstructor.constructObjectNoCheck(BaseConstructor.java:264) ~[snakeyaml-2.2.jar:?]
+	at org.yaml.snakeyaml.constructor.BaseConstructor.constructObject(BaseConstructor.java:247) ~[snakeyaml-2.2.jar:?]
+	at DankTech2.jar//io.github.sefiraat.danktech2.managers.PackRegistryFile$StrictRegistryConstructor.constructObject(PackRegistryFile.java:158) ~[?:?]
+	at org.yaml.snakeyaml.constructor.BaseConstructor.constructMapping2ndStep(BaseConstructor.java:576) ~[snakeyaml-2.2.jar:?]
+	at org.yaml.snakeyaml.constructor.SafeConstructor.constructMapping2ndStep(SafeConstructor.java:210) ~[snakeyaml-2.2.jar:?]
+	at org.yaml.snakeyaml.constructor.BaseConstructor.constructMapping(BaseConstructor.java:552) ~[snakeyaml-2.2.jar:?]
+java.lang.IllegalStateException: Unable to load dank_packs.yml; DankTech2 is stopping to preserve the existing pack registry. Restore or repair the original file before restarting.
+[11:57:39 INFO]: [DankTech2] Disabling DankTech2 v1.1.03
+[11:57:39 INFO]: [PackPreservationProbe] Enabling PackPreservationProbe v1.0
+[11:57:40 INFO]: Done (9.550s)! For help, type "help"
+[11:57:42 INFO]: [PackPreservationProbe] OK startup-refusal probe runs on real Paper server thread
+[11:57:42 INFO]: [PackPreservationProbe] OK published Slimefun remains enabled for refusal test
+[11:57:42 INFO]: [PackPreservationProbe] OK unreadable existing registry leaves DankTech2 disabled
+[11:57:42 INFO]: [PackPreservationProbe] OK unreadable registry never initializes ConfigManager singleton
+[11:57:42 INFO]: [PackPreservationProbe] OK disabled addon has no registered event listeners
+[11:57:42 INFO]: [PackPreservationProbe] OK disabled addon has no pending scheduled tasks
+[11:57:42 INFO]: [PackPreservationProbe] OK unreadable registry stops startup before pack or machine registration
+[11:57:42 INFO]: [PackPreservationProbe] OK refused registry remains byte-for-byte unchanged before shutdown
+[11:57:42 INFO]: [PackPreservationProbe] PASS unreadable-item
+[11:57:42 INFO]: Stopping server
+[11:57:42 INFO]: [PackPreservationProbe] Disabling PackPreservationProbe v1.0

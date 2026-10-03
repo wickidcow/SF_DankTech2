@@ -1,0 +1,34 @@
+[11:57:10 INFO]: Starting minecraft server version 26.3
+[11:57:11 INFO]: [PackPreservationProbe] Loading server plugin PackPreservationProbe v1.0
+[11:57:11 INFO]: [Slimefun] Enabling Slimefun v4.1.67
+[11:57:13 INFO]: [DankTech2] Enabling DankTech2 v1.1.03
+[11:57:13 INFO]: [PackPreservationProbe] Enabling PackPreservationProbe v1.0
+[11:57:13 INFO]: [DankTech2] DankTech2 saving data.
+[11:57:13 INFO]: Done (9.419s)! For help, type "help"
+[11:57:16 INFO]: [PackPreservationProbe] OK probe runs on the real Paper server thread
+[11:57:16 INFO]: [PackPreservationProbe] OK published Slimefun enabled
+[11:57:16 INFO]: [PackPreservationProbe] OK DankTech2 enabled
+[11:57:16 INFO]: [PackPreservationProbe] OK exact requested DankTech2 1.1.03 loaded
+[11:57:16 INFO]: [PackPreservationProbe] SERVER 26.3-143-ff3655a (MC: 26.3)
+[11:57:16 INFO]: [PackPreservationProbe] JAVA 25.0.4.1
+[11:57:16 INFO]: [PackPreservationProbe] OK saved real world chest loaded after restart
+[11:57:16 INFO]: [PackPreservationProbe] OK world chest retains exact clone item after restart
+[11:57:16 INFO]: [PackPreservationProbe] OK world chest retains exact upgraded Trash Pack after restart
+[11:57:16 INFO]: [PackPreservationProbe] OK world chest retains exact Long.MAX_VALUE item after restart
+[11:57:16 INFO]: [PackPreservationProbe] OK historical Trash filter byte array is byte-for-byte unchanged across world save and restart
+[11:57:16 INFO]: [PackPreservationProbe] OK Slimefun resolves the same registered item IDs after restart
+[11:57:16 INFO]: [PackPreservationProbe] OK old identity remains deleted in reread registry
+[11:57:16 INFO]: [PackPreservationProbe] OK replacement remains registered after restart
+[11:57:16 INFO]: [PackPreservationProbe] OK Long.MAX_VALUE registry key and LONG payload survive restart
+[11:57:16 INFO]: [PackPreservationProbe] OK ConfigManager rereads both exact saved rich items with no extra records
+[11:57:16 INFO]: [PackPreservationProbe] OK restarted clone reverses to exact original when only ID is restored
+[11:57:16 INFO]: [PackPreservationProbe] OK Dank tier, exact owner, nine item/count slots and maximum count preserved
+[11:57:16 INFO]: [PackPreservationProbe] OK stored items retain rich nested metadata
+[11:57:16 INFO]: [PackPreservationProbe] OK unknown FLOAT, BYTE_ARRAY and nested LONG fields retain exact types and values
+[11:57:16 INFO]: [PackPreservationProbe] OK upgraded Trash Pack retains original full long ID and final tier after restart
+[11:57:16 INFO]: [PackPreservationProbe] OK historical filter array and rich metadata reread exactly after restart
+[11:57:16 INFO]: [PackPreservationProbe] PASS second
+[11:57:16 INFO]: Stopping server
+[11:57:16 INFO]: [PackPreservationProbe] Disabling PackPreservationProbe v1.0
+[11:57:16 INFO]: [DankTech2] Disabling DankTech2 v1.1.03
+[11:57:16 INFO]: [DankTech2] DankTech2 saving data.

@@ -1,0 +1,24 @@
+{
+  "files": {
+    "server/plugins/DankTech2.jar": "08a19faf81fa7b67dfbe6ee4cba8b9499296bb6827475ef8e07112ff36d451bd",
+    "server/plugins/Slimefun.jar": "011d1181c5684d048425078d519100d46fb0867f053ff4b3312fd69c9cedf816",
+    "server/server.jar": "32cf4a93545e218525bc4536b017c6b5d5085d27d449d64266a6b23ba4d0cbb9",
+    "server/plugins/PackPreservationProbe.jar": "cbc6824883d4925a20de8cd320aa398d8707d175b8ab62a9af3827ae9959d2ac",
+    "PackPreservationProbe.java": "444848092d7cd27a05bd78eca8ecf1c87500f5eb88bb4876d965424b6a2bbe45"
+  },
+  "java": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Temurin-25.0.4.1+1 (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Temurin-25.0.4.1+1 (build 25.0.4.1+1-LTS, mixed mode, sharing)\n",
+  "gui_guards": true,
+  "expected_dank_version": "1.1.03",
+  "scope": "Real Paper inventory, PDC and registry; GUI refusal checks use a tracked Player-interface proxy, no connected players.",
+  "results": [
+    {
+      "phase": "first",
+      "exit_code": 0,
+      "passed": false,
+      "checks": 63,
+      "result_sha256": "44f57c99b3957a39b0963ea9fdfffff84b19df8dee024565735b7accb2f618ab",
+      "refused_registry_sha256_before": null,
+      "refused_registry_sha256_after": null
+    }
+  ]
+}

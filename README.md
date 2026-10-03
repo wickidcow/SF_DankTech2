@@ -32,6 +32,17 @@ Core features include:
 
 This fork keeps DankTech2's established storage behavior and item identity while maintaining it for the modern Slimefun Legacy ecosystem. Storage plugins deserve extra caution: back up worlds, player data, and plugin data before replacing production builds, and test high-capacity packs with low-value items first.
 
+### Current release: 1.1.03
+
+- Trash Pack upgrades preserve the original pack ID, all filters, and unknown stored metadata.
+- Building with an empty selected Dank Pack slot gives an English message without an exception.
+- Admin cloning keeps the original pack valid until its replacement is delivered and registered. A full inventory leaves both the pack and inventory unchanged.
+- Replaced packs stay invalid through older pack menus, admin menus, and crafting upgrades.
+- Registry saves use readable item serialization, and loading recovers the known historical Slimefun item alias while refusing unreadable item records.
+- The existing strict registry loading and staged YAML saving safeguards are retained.
+
+Download the raw **SF_DankTech21.1.03.jar** from [Releases](https://github.com/wickidcow/SF_DankTech2/releases/tag/v1.1.03). Minecraft **1.21.11** and **Java 21** remain the minimum; **Paper 26.3** is the primary current compatibility target. See the [1.1.03 release notes](docs/releases/1.1.03.md).
+
 ## ❤️ Credits & project lineage
 
 - **Sefiraat** — original creator of **DankTech** and **DankTech2**, and author of the Slimefun rewrite preserved here.

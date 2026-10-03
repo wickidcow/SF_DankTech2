@@ -1,16 +1,11 @@
 package io.github.sefiraat.danktech2.slimefun.machines;
 
 import io.github.sefiraat.danktech2.managers.ConfigManager;
-import io.github.sefiraat.danktech2.core.DankPackInstance;
-import io.github.sefiraat.danktech2.core.TrashPackInstance;
 import io.github.sefiraat.danktech2.slimefun.Machines;
 import io.github.sefiraat.danktech2.slimefun.packs.DankPack;
 import io.github.sefiraat.danktech2.slimefun.packs.TrashPack;
 import io.github.sefiraat.danktech2.theme.ThemeType;
 import io.github.sefiraat.danktech2.utils.Keys;
-import io.github.sefiraat.danktech2.utils.datatypes.DataTypeMethods;
-import io.github.sefiraat.danktech2.utils.datatypes.PersistentDankInstanceType;
-import io.github.sefiraat.danktech2.utils.datatypes.PersistentTrashInstanceType;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -136,14 +131,15 @@ public class DankCrafter extends SlimefunItem {
 
                     if (slimefunItem instanceof DankPack) {
                         final DankPack dankPack = (DankPack) slimefunItem;
-                        DankPackInstance instance = DataTypeMethods.getCustom(coreItemMeta, Keys.DANK_INSTANCE, PersistentDankInstanceType.TYPE, new DankPackInstance(System.currentTimeMillis(), 0));
-                        instance.setTier(dankPack.getTier());
-                        DataTypeMethods.setCustom(craftedItemMeta, Keys.DANK_INSTANCE, PersistentDankInstanceType.TYPE, instance);
+                        if (!DankPackUpgrade.copyInstance(coreItemMeta, craftedItemMeta, dankPack.getTier(),
+                            ConfigManager.getInstance()::checkDankDeletion)) {
+                            player.sendMessage(ThemeType.ERROR.getColor()
+                                + "This Dank Pack has been replaced or deleted and cannot be upgraded.");
+                            return false;
+                        }
                     } else if (slimefunItem instanceof TrashPack) {
                         final TrashPack trashPack = (TrashPack) slimefunItem;
-                        TrashPackInstance instance = DataTypeMethods.getCustom(coreItemMeta, Keys.DANK_INSTANCE, PersistentTrashInstanceType.TYPE, new TrashPackInstance(System.currentTimeMillis(), 0));
-                        instance.setTier(trashPack.getTier());
-                        DataTypeMethods.setCustom(craftedItemMeta, Keys.TRASH_INSTANCE, PersistentTrashInstanceType.TYPE, instance);
+                        TrashPackUpgrade.copyInstance(coreItemMeta, craftedItemMeta, trashPack.getTier());
                     }
 
                     crafted.setItemMeta(craftedItemMeta);

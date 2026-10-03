@@ -1,0 +1,51 @@
+{
+  "files": {
+    "server/plugins/DankTech2.jar": "2921c540dae542d2932a7b4d44e93b160cb4a9fbd6739f17b413c9eed5e42407",
+    "server/plugins/Slimefun.jar": "011d1181c5684d048425078d519100d46fb0867f053ff4b3312fd69c9cedf816",
+    "server/server.jar": "32cf4a93545e218525bc4536b017c6b5d5085d27d449d64266a6b23ba4d0cbb9",
+    "server/plugins/PackPreservationProbe.jar": "d195133a40babe32fd0d3cec38a67268faf877b1b81207471b3b1c160e3da0d5",
+    "PackPreservationProbe.java": "444848092d7cd27a05bd78eca8ecf1c87500f5eb88bb4876d965424b6a2bbe45"
+  },
+  "java": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Temurin-25.0.4.1+1 (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Temurin-25.0.4.1+1 (build 25.0.4.1+1-LTS, mixed mode, sharing)\n",
+  "gui_guards": true,
+  "expected_dank_version": "1.1.03",
+  "scope": "Real Paper inventory, PDC and registry; GUI refusal checks use a tracked Player-interface proxy, no connected players.",
+  "results": [
+    {
+      "phase": "first",
+      "exit_code": 0,
+      "passed": true,
+      "checks": 86,
+      "result_sha256": "bcfebb8150ee2c274474231edce76221e4e7d707f6e616129b65394887cbcfe8",
+      "refused_registry_sha256_before": null,
+      "refused_registry_sha256_after": null
+    },
+    {
+      "phase": "second",
+      "exit_code": 0,
+      "passed": true,
+      "checks": 20,
+      "result_sha256": "9d20d172e6f87439c816d00fbfd2618bae0caea013688dc4cd1a285b5d812e82",
+      "refused_registry_sha256_before": null,
+      "refused_registry_sha256_after": null
+    },
+    {
+      "phase": "legacy-alias",
+      "exit_code": 0,
+      "passed": true,
+      "checks": 20,
+      "result_sha256": "0d3412354561200fe923597ee39885146158d61c0b1c1c94a9cd48967db178d0",
+      "refused_registry_sha256_before": null,
+      "refused_registry_sha256_after": null
+    },
+    {
+      "phase": "unreadable-item",
+      "exit_code": 0,
+      "passed": false,
+      "checks": 3,
+      "result_sha256": "e7c6661f3b81b549d4dcb4ce6f227937bd4397355c733bcd3c404216a06c60ce",
+      "refused_registry_sha256_before": "6df3d6c05ab1e633495eb271414b22347f40a7739ba9c4063343d0ee9fc485bb",
+      "refused_registry_sha256_after": "6df3d6c05ab1e633495eb271414b22347f40a7739ba9c4063343d0ee9fc485bb"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+OK startup-refusal probe runs on real Paper server thread
+OK published Slimefun remains enabled for refusal test
+OK unreadable existing registry leaves DankTech2 disabled
+OK unreadable registry never initializes ConfigManager singleton
+OK disabled addon has no registered event listeners
+OK disabled addon has no pending scheduled tasks
+OK unreadable registry stops startup before pack or machine registration
+OK refused registry remains byte-for-byte unchanged before shutdown
+PASS unreadable-item

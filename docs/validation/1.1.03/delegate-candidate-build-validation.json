@@ -1,0 +1,101 @@
+{
+  "date": "2026-10-03",
+  "source_base": "d9fa86457651c03d1494c1bd111671e7be93815a",
+  "source_status": "Local scoped 1.1.03 changes; not yet committed or published",
+  "java": "25.0.4.1",
+  "maven": "3.9.9",
+  "artifact": {
+    "name": "SF_DankTech21.1.03.jar",
+    "sha256": "08a19faf81fa7b67dfbe6ee4cba8b9499296bb6827475ef8e07112ff36d451bd",
+    "bytes": 188648,
+    "class_count": 80,
+    "max_class_major": 65,
+    "plugin_version": "1.1.03",
+    "api_version": "1.21",
+    "test_or_provided_dependencies_packaged": []
+  },
+  "gates": [
+    {
+      "paper_api": "26.2.build.112-stable",
+      "command": "mvn -B -Dmaven.test.skip=true -Dpaper.version=26.2.build.112-stable clean package",
+      "result": "PASS",
+      "finished_at": "2026-10-03T11:47:57Z",
+      "log_sha256": "328c9bf3b87869e64bde8dcdd2e9f02664e7b7fc0acdc0f6d84df319baa9847f"
+    },
+    {
+      "paper_api": "26.3.build.143-beta",
+      "command": "mvn -B -Dmaven.test.skip=true -Dpaper.version=26.3.build.143-beta clean package",
+      "result": "PASS",
+      "finished_at": "2026-10-03T11:48:30Z",
+      "log_sha256": "194b5b55a46bdb03edfc80d014eba63a6b44597d9802435119f73e6a6b49bc88"
+    },
+    {
+      "paper_api": "1.21.11-R0.1-SNAPSHOT",
+      "command": "mvn -B clean verify",
+      "result": "PASS",
+      "finished_at": "2026-10-03T11:48:44Z",
+      "log_sha256": "cad69427a3684077dc8bc7ceeea05760f1a0df9f11060f9d3b167227dd3f01bc"
+    }
+  ],
+  "tests": [
+    {
+      "name": "io.github.sefiraat.danktech2.core.AdminPackCloneTest",
+      "tests": 9,
+      "errors": 0,
+      "skipped": 0,
+      "failures": 0
+    },
+    {
+      "name": "io.github.sefiraat.danktech2.core.DankPackAccessTest",
+      "tests": 7,
+      "errors": 0,
+      "skipped": 0,
+      "failures": 0
+    },
+    {
+      "name": "io.github.sefiraat.danktech2.listeners.PackListenerBuildTest",
+      "tests": 6,
+      "errors": 0,
+      "skipped": 0,
+      "failures": 0
+    },
+    {
+      "name": "io.github.sefiraat.danktech2.managers.PackRegistryFileTest",
+      "tests": 12,
+      "errors": 0,
+      "skipped": 0,
+      "failures": 0
+    },
+    {
+      "name": "io.github.sefiraat.danktech2.managers.PackRegistryItemCompatibilityTest",
+      "tests": 11,
+      "errors": 0,
+      "skipped": 0,
+      "failures": 0
+    },
+    {
+      "name": "io.github.sefiraat.danktech2.slimefun.machines.DankPackUpgradeTest",
+      "tests": 4,
+      "errors": 0,
+      "skipped": 0,
+      "failures": 0
+    },
+    {
+      "name": "io.github.sefiraat.danktech2.slimefun.machines.TrashPackUpgradeTest",
+      "tests": 5,
+      "errors": 0,
+      "skipped": 0,
+      "failures": 0
+    }
+  ],
+  "warnings": "Existing API deprecation, Maven/JDK native/Unsafe and shade manifest-overlap warnings remain visible; no warning suppression was added.",
+  "additional_gates": {
+    "registry_startup_source_guard": "PASS",
+    "git_diff_check": "PASS",
+    "release_source_tag_shell_cases": {
+      "passed": 7,
+      "failed": 0,
+      "remote_writes": 0
+    }
+  }
+}

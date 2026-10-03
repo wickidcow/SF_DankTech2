@@ -1,0 +1,47 @@
+Exact Paper 26.3 build 143 bytecode disassembly excerpts.
+
+ItemStack copy constructor:
+  public org.bukkit.inventory.ItemStack(org.bukkit.inventory.ItemStack) throws java.lang.IllegalArgumentException;
+    Code:
+         0: aload_0
+         1: invokespecial #60                 // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: aconst_null
+         6: putfield      #66                 // Field data:Lorg/bukkit/material/MaterialData;
+         9: aload_1
+        10: ifnull        17
+        13: iconst_1
+        14: goto          18
+        17: iconst_0
+        18: ldc           #128                // String Cannot copy null stack
+        20: invokestatic  #23                 // Method com/google/common/base/Preconditions.checkArgument:(ZLjava/lang/Object;)V
+        23: aload_0
+        24: aload_1
+        25: invokevirtual #130                // Method clone:()Lorg/bukkit/inventory/ItemStack;
+        28: putfield      #48                 // Field craftDelegate:Lorg/bukkit/inventory/ItemStack;
+        31: aload_1
+        32: invokevirtual #133                // Method getType:()Lorg/bukkit/Material;
+        35: invokevirtual #81                 // Method org/bukkit/Material.isLegacy:()Z
+        38: ifeq          49
+        41: aload_0
+        42: aload_1
+        43: invokevirtual #137                // Method getData:()Lorg/bukkit/material/MaterialData;
+        46: putfield      #66                 // Field data:Lorg/bukkit/material/MaterialData;
+        49: return
+
+CraftItemStack.getCraftStack:
+  public static org.bukkit.craftbukkit.inventory.CraftItemStack getCraftStack(org.bukkit.inventory.ItemStack);
+    Code:
+         0: aload_0
+         1: instanceof    #1                  // class org/bukkit/craftbukkit/inventory/CraftItemStack
+         4: ifeq          14
+         7: aload_0
+         8: checkcast     #1                  // class org/bukkit/craftbukkit/inventory/CraftItemStack
+        11: astore_1
+        12: aload_1
+        13: areturn
+        14: getstatic     #3                  // Field API_ITEM_STACK_CRAFT_DELEGATE_FIELD:Ljava/lang/invoke/VarHandle;
+        17: aload_0
+        18: invokevirtual #7                  // Method java/lang/invoke/VarHandle.get:(Lorg/bukkit/inventory/ItemStack;)Lorg/bukkit/craftbukkit/inventory/CraftItemStack;
+        21: areturn
+

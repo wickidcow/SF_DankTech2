@@ -1,0 +1,23 @@
+OK probe runs on the real Paper server thread
+OK published Slimefun enabled
+OK DankTech2 enabled
+OK exact requested DankTech2 1.1.03 loaded
+SERVER 26.3-143-ff3655a (MC: 26.3)
+JAVA 25.0.4.1
+OK saved real world chest loaded after restart
+OK world chest retains exact clone item after restart
+OK world chest retains exact upgraded Trash Pack after restart
+OK world chest retains exact Long.MAX_VALUE item after restart
+OK historical Trash filter byte array is byte-for-byte unchanged across world save and restart
+OK Slimefun resolves the same registered item IDs after restart
+OK old identity remains deleted in reread registry
+OK replacement remains registered after restart
+OK Long.MAX_VALUE registry key and LONG payload survive restart
+OK ConfigManager rereads both exact saved rich items with no extra records
+OK restarted clone reverses to exact original when only ID is restored
+OK Dank tier, exact owner, nine item/count slots and maximum count preserved
+OK stored items retain rich nested metadata
+OK unknown FLOAT, BYTE_ARRAY and nested LONG fields retain exact types and values
+OK upgraded Trash Pack retains original full long ID and final tier after restart
+OK historical filter array and rich metadata reread exactly after restart
+PASS second

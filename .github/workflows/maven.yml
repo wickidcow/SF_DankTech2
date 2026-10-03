@@ -12,8 +12,8 @@ permissions:
   contents: write
 
 env:
-  LEGACY_VERSION: "1.1.02"
-  OUTPUT_NAME: "SF_DankTech21.1.02.jar"
+  LEGACY_VERSION: "1.1.03"
+  OUTPUT_NAME: "SF_DankTech21.1.03.jar"
 
 jobs:
   build:
@@ -32,7 +32,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          grep -Fq '<version>1.1.02</version>' pom.xml
+          grep -Fq '<version>1.1.03</version>' pom.xml
           grep -Fq '<paper.version>1.21.11-R0.1-SNAPSHOT</paper.version>' pom.xml
           grep -Fq '<maven.compiler.release>21</maven.compiler.release>' pom.xml
           grep -Fq '<finalName>SF_DankTech2${project.version}</finalName>' pom.xml
@@ -43,8 +43,8 @@ jobs:
         run: mvn -B -Dmaven.test.skip=true -Dpaper.version=1.21.11-R0.1-SNAPSHOT clean package --file pom.xml
       - name: Verify Paper 26.2 compilation
         run: mvn -B -Dmaven.test.skip=true -Dpaper.version=26.2.build.112-stable clean package --file pom.xml
-      - name: Verify Paper 26.3 alpha compilation
-        run: mvn -B -Dmaven.test.skip=true -Dpaper.version=26.3-rc-3.build.1-alpha clean package --file pom.xml
+      - name: Verify Paper 26.3 compilation
+        run: mvn -B -Dmaven.test.skip=true -Dpaper.version=26.3.build.143-beta clean package --file pom.xml
       - name: Build and test universal release JAR from 1.21.11 baseline
         run: mvn -B -Dpaper.version=1.21.11-R0.1-SNAPSHOT clean package --file pom.xml
       - name: Stage and verify versioned JAR
@@ -60,7 +60,7 @@ jobs:
           unzip -p "$JAR" plugin.yml | grep -Fq "version: ${LEGACY_VERSION}"
           python3 - <<'PY'
           import pathlib, struct, zipfile
-          jar = pathlib.Path('dist') / 'SF_DankTech21.1.02.jar'
+          jar = pathlib.Path('dist') / 'SF_DankTech21.1.03.jar'
           max_major = 0
           with zipfile.ZipFile(jar) as zf:
               for name in zf.namelist():
@@ -95,7 +95,28 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then TAG="$GITHUB_REF_NAME"; else TAG="v${LEGACY_VERSION}"; fi
+          TAG="v${LEGACY_VERSION}"
+          if [[ "$GITHUB_REF" == refs/tags/v* && "$GITHUB_REF_NAME" != "$TAG" ]]; then
+            echo "Refusing a release tag that does not match the project version" >&2
+            exit 1
+          fi
           JAR="dist/${OUTPUT_NAME}"
-          NOTES="DankTech2 1.1.02 restores the Paper 1.21.11 / Java 21 universal release baseline, keeps Paper 26.2 as the primary production target, and adds Paper 26.3 alpha compatibility validation. Maven now emits SF_DankTech21.1.02.jar directly."
-          if gh release view "$TAG" >/dev/null 2>&1; then gh release upload "$TAG" "$JAR" --clobber; else gh release create "$TAG" "$JAR" --target "$GITHUB_SHA" --notes "$NOTES" --title "SF_DankTech2 $TAG"; fi
+          NOTES="docs/releases/${LEGACY_VERSION}.md"
+          test -s "$NOTES"
+          # A retry may replace an asset only when the immutable source tag matches this build.
+          TAG_SOURCE="$(git ls-remote --tags origin "refs/tags/$TAG" "refs/tags/$TAG^{}" \
+            | awk 'index($2, "^{}") { peeled = $1; next } { direct = $1 } END { print peeled != "" ? peeled : direct }')"
+          if [[ -n "$TAG_SOURCE" && "$TAG_SOURCE" != "$GITHUB_SHA" ]]; then
+            echo "Refusing to publish over an existing tag for a different source commit" >&2
+            exit 1
+          fi
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            if [[ "$TAG_SOURCE" != "$GITHUB_SHA" ]]; then
+              echo "Refusing to replace an asset without a matching source tag" >&2
+              exit 1
+            fi
+            gh release upload "$TAG" "$JAR" --repo "$GITHUB_REPOSITORY" --clobber
+          else
+            gh release create "$TAG" "$JAR" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+              --notes-file "$NOTES" --title "SF_DankTech2 $TAG"
+          fi

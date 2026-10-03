@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.sefiraat</groupId>
     <artifactId>DankTech2</artifactId>
-    <version>1.1.02</version>
+    <version>1.1.03</version>
     <name>DankTech2</name>
     <description>Legacy-maintained DankTech2 mass-storage backpacks for modern Paper and Slimefun runtimes.</description>
     <url>https://github.com/wickidcow/DankTech2</url>
@@ -76,6 +76,7 @@
 
     <dependencies>
         <dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter</artifactId><version>5.12.2</version><scope>test</scope></dependency>
+        <dependency><groupId>org.mockbukkit.mockbukkit</groupId><artifactId>mockbukkit-v1.21</artifactId><version>4.110.0</version><scope>test</scope></dependency>
         <dependency><groupId>io.papermc.paper</groupId><artifactId>paper-api</artifactId><version>${paper.version}</version><scope>provided</scope></dependency>
         <dependency>
             <groupId>com.github.Slimefun</groupId><artifactId>Slimefun4</artifactId><version>${slimefun.version}</version><scope>provided</scope>

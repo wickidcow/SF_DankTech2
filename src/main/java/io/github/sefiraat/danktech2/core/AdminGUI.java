@@ -1,5 +1,6 @@
 package io.github.sefiraat.danktech2.core;
 
+import io.github.sefiraat.danktech2.DankTech2;
 import io.github.sefiraat.danktech2.managers.ConfigManager;
 import io.github.sefiraat.danktech2.theme.ThemeType;
 import io.github.sefiraat.danktech2.utils.Keys;
@@ -17,6 +18,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 public class AdminGUI extends ChestMenu {
 
@@ -111,8 +113,21 @@ public class AdminGUI extends ChestMenu {
                 replaceExistingItem(9 + i, getDisplayDank(dank, dankPackInstance));
                 addMenuClickHandler(9 + i, (p, slot, item, action) -> {
                     if (action.isRightClicked()) {
-                        p.getInventory().addItem(cloneDank(dank));
-                        p.closeInventory();
+                        ConfigManager registry = ConfigManager.getInstance();
+                        try {
+                            if (AdminPackClone.replace(dank, p.getInventory(), registry::checkDankDeletion,
+                                registry::saveDankPack, registry::deletePack)) {
+                                p.closeInventory();
+                            } else {
+                                p.sendMessage(LEGACY.deserialize(ThemeType.ERROR.getColor()
+                                    + "Unable to clone this Dank Pack. Check your inventory space and reopen the admin menu."));
+                            }
+                        } catch (RuntimeException exception) {
+                            p.sendMessage(LEGACY.deserialize(ThemeType.ERROR.getColor()
+                                + "The Dank Pack could not be cloned. The original pack has been kept."));
+                            DankTech2.getInstance().getLogger().log(Level.SEVERE,
+                                "Unable to deliver and register an admin Dank Pack clone", exception);
+                        }
                     } else {
                         DankGUI dankGUI = new DankGUI(dankPackInstance, dank);
                         dankGUI.open(p);
@@ -121,22 +136,6 @@ public class AdminGUI extends ChestMenu {
                 });
             }
         }
-    }
-
-    private ItemStack cloneDank(ItemStack dank) {
-        ItemStack cloneDank = dank.clone();
-        ItemMeta cloneMeta = cloneDank.getItemMeta();
-        final DankPackInstance dankPackInstance = DataTypeMethods.getCustom(
-            cloneMeta,
-            Keys.DANK_INSTANCE,
-            PersistentDankInstanceType.TYPE
-        );
-        ConfigManager.getInstance().deletePack(dankPackInstance.getId());
-        dankPackInstance.setId(System.currentTimeMillis());
-        DataTypeMethods.setCustom(cloneMeta, Keys.DANK_INSTANCE, PersistentDankInstanceType.TYPE, dankPackInstance);
-        cloneDank.setItemMeta(cloneMeta);
-        ConfigManager.getInstance().saveDankPack(cloneDank);
-        return cloneDank;
     }
 
     private ItemStack getDisplayDank(ItemStack dank, DankPackInstance dankPackInstance) {

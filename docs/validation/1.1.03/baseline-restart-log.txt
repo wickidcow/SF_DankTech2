@@ -1,0 +1,40 @@
+[11:37:46 INFO]: Starting minecraft server version 26.3
+[11:37:47 INFO]: [PackPreservationProbe] Loading server plugin PackPreservationProbe v1.0
+[11:37:47 INFO]: [Slimefun] Enabling Slimefun v4.1.67
+[11:37:49 INFO]: [DankTech2] Enabling DankTech2 v1.1.03
+[11:37:49 INFO]: [PackPreservationProbe] Enabling PackPreservationProbe v1.0
+[11:37:50 INFO]: [DankTech2] DankTech2 saving data.
+[11:37:50 INFO]: Done (9.075s)! For help, type "help"
+[11:37:53 ERROR]: [PackPreservationProbe] java.lang.AssertionError: ConfigManager rereads both exact saved rich items with no extra records
+	at PackPreservationProbe.jar//audit.PackPreservationProbe.check(PackPreservationProbe.java:495)
+	at PackPreservationProbe.jar//audit.PackPreservationProbe.second(PackPreservationProbe.java:210)
+	at PackPreservationProbe.jar//audit.PackPreservationProbe.lambda$onEnable$0(PackPreservationProbe.java:79)
+	at org.bukkit.craftbukkit.scheduler.CraftTask.run(CraftTask.java:78)
+	at org.bukkit.craftbukkit.scheduler.CraftScheduler.mainThreadHeartbeat(CraftScheduler.java:474)
+	at net.minecraft.server.MinecraftServer.tickChildren(MinecraftServer.java:1749)
+	at net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1602)
+	at net.minecraft.server.dedicated.DedicatedServer.tickServer(DedicatedServer.java:404)
+	at net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1660)
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1330)
+	at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:298)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+[11:37:53 INFO]: [PackPreservationProbe] OK probe runs on the real Paper server thread
+[11:37:53 INFO]: [PackPreservationProbe] OK published Slimefun enabled
+[11:37:53 INFO]: [PackPreservationProbe] OK DankTech2 enabled
+[11:37:53 INFO]: [PackPreservationProbe] OK new DankTech2 1.1.03 loaded
+[11:37:53 INFO]: [PackPreservationProbe] SERVER 26.3-143-ff3655a (MC: 26.3)
+[11:37:53 INFO]: [PackPreservationProbe] JAVA 25.0.4.1
+[11:37:53 INFO]: [PackPreservationProbe] OK saved real world chest loaded after restart
+[11:37:53 INFO]: [PackPreservationProbe] OK world chest retains exact clone item after restart
+[11:37:53 INFO]: [PackPreservationProbe] OK world chest retains exact upgraded Trash Pack after restart
+[11:37:53 INFO]: [PackPreservationProbe] OK world chest retains exact Long.MAX_VALUE item after restart
+[11:37:53 INFO]: [PackPreservationProbe] OK historical Trash filter byte array is byte-for-byte unchanged across world save and restart
+[11:37:53 INFO]: [PackPreservationProbe] OK Slimefun resolves the same registered item IDs after restart
+[11:37:53 INFO]: [PackPreservationProbe] OK old identity remains deleted in reread registry
+[11:37:53 INFO]: [PackPreservationProbe] OK replacement remains registered after restart
+[11:37:53 INFO]: [PackPreservationProbe] OK Long.MAX_VALUE registry key and LONG payload survive restart
+[11:37:53 INFO]: [PackPreservationProbe] FAIL second
+[11:37:53 INFO]: Stopping server
+[11:37:53 INFO]: [PackPreservationProbe] Disabling PackPreservationProbe v1.0
+[11:37:53 INFO]: [DankTech2] Disabling DankTech2 v1.1.03
+[11:37:53 INFO]: [DankTech2] DankTech2 saving data.
