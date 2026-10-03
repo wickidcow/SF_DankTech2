@@ -1,0 +1,22 @@
+OK startup-refusal probe runs on real Paper server thread
+OK published Slimefun remains enabled for refusal test
+OK unreadable existing registry leaves DankTech2 disabled
+FAIL unreadable-item
+java.lang.NoClassDefFoundError: io/github/sefiraat/danktech2/managers/ConfigManager
+	at PackPreservationProbe.jar//audit.PackPreservationProbe.registryRefusal(PackPreservationProbe.java:111)
+	at PackPreservationProbe.jar//audit.PackPreservationProbe.lambda$onEnable$0(PackPreservationProbe.java:68)
+	at org.bukkit.craftbukkit.scheduler.CraftTask.run(CraftTask.java:78)
+	at org.bukkit.craftbukkit.scheduler.CraftScheduler.mainThreadHeartbeat(CraftScheduler.java:474)
+	at net.minecraft.server.MinecraftServer.tickChildren(MinecraftServer.java:1749)
+	at net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1602)
+	at net.minecraft.server.dedicated.DedicatedServer.tickServer(DedicatedServer.java:404)
+	at net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1660)
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1330)
+	at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:298)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+Caused by: java.lang.ClassNotFoundException: io.github.sefiraat.danktech2.managers.ConfigManager
+	at org.bukkit.plugin.java.PluginClassLoader.loadClass0(PluginClassLoader.java:208)
+	at org.bukkit.plugin.java.PluginClassLoader.loadClass(PluginClassLoader.java:175)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:490)
+	... 11 more
+

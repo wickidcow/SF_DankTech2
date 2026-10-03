@@ -89,8 +89,11 @@ public class ConfigManager {
         SlimefunItem slimefunItem = SlimefunItem.getByItem(itemStack);
         if (slimefunItem instanceof DankPack) {
             DankPackInstance instance = DataTypeMethods.getCustom(itemStack.getItemMeta(), Keys.DANK_INSTANCE, PersistentDankInstanceType.TYPE);
+            // Template clones can retain an unregistered YAML alias or a nested server delegate.
+            // A native item copy keeps every component and PDC field with a readable item alias.
+            ItemStack registryItem = ItemStack.deserializeBytes(itemStack.serializeAsBytes());
             dankPacks.set(instance.getId() + ".last_user", instance.getLastUser());
-            dankPacks.set(instance.getId() + ".item", itemStack.clone());
+            dankPacks.set(instance.getId() + ".item", registryItem);
         }
     }
 

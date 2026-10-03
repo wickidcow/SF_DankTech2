@@ -56,12 +56,14 @@ public class DankGUI extends ChestMenu {
 
     private DankPackInstance packInstance;
     private final ItemStack itemStack;
+    private final long packId;
     private final DankPack dankPack;
 
     public DankGUI(DankPackInstance packInstance, ItemStack itemStack) {
         super("Dank Pack - Tier " + packInstance.getTier());
         this.packInstance = packInstance;
         this.itemStack = itemStack;
+        this.packId = packInstance.getId();
         this.dankPack = (DankPack) SlimefunItem.getByItem(itemStack);
 
         ChestMenuUtils.drawBackground(this, BACKGROUND_SLOTS);
@@ -120,7 +122,9 @@ public class DankGUI extends ChestMenu {
     }
 
     private boolean setNewItem(Player player, int instanceSlot) {
-        loadInstance();
+        if (!loadInstance(player)) {
+            return false;
+        }
         ItemStack heldItem = player.getItemOnCursor();
         if (heldItem.getType() != Material.AIR
             && allowedInDank(heldItem)
@@ -137,7 +141,9 @@ public class DankGUI extends ChestMenu {
     }
 
     private boolean addToExistingItem(Player player, int instanceSlot) {
-        loadInstance();
+        if (!loadInstance(player)) {
+            return false;
+        }
         ItemStack heldItem = player.getItemOnCursor();
         int maxAmount = this.dankPack.getCapacityPerSlot().getValue();
         int currentAmount = this.packInstance.getAmount(instanceSlot);
@@ -156,7 +162,9 @@ public class DankGUI extends ChestMenu {
     }
 
     private boolean interactWithItem(Player player, ClickAction clickAction, int instanceSlot) {
-        loadInstance();
+        if (!loadInstance(player)) {
+            return false;
+        }
 
         if (clickAction.isShiftClicked()) {
             if (clickAction.isRightClicked()) {
@@ -266,17 +274,28 @@ public class DankGUI extends ChestMenu {
 
     @Override
     public void open(Player... players) {
+        if (players.length == 0 || !loadInstance(players)) {
+            return;
+        }
         this.packInstance.setLastUser(LEGACY.serialize(players[0].displayName()));
         saveInstance();
         super.open(players);
     }
 
-    private void loadInstance() {
-        this.packInstance = DataTypeMethods.getCustom(
-            this.itemStack.getItemMeta(),
-            Keys.DANK_INSTANCE,
-            PersistentDankInstanceType.TYPE
-        );
+    private boolean loadInstance(Player... players) {
+        DankPackInstance current = DankPackAccess.loadExisting(this.itemStack, this.packId,
+            ConfigManager.getInstance()::checkDankDeletion);
+        // Validate before any cursor or inventory mutation in these synchronous handlers.
+        if (current == null) {
+            for (Player player : players) {
+                player.sendMessage(LEGACY.deserialize(ThemeType.ERROR.getColor()
+                    + "This Dank Pack is no longer available. Open the current pack to continue."));
+                player.closeInventory();
+            }
+            return false;
+        }
+        this.packInstance = current;
+        return true;
     }
 
     private void saveInstance() {

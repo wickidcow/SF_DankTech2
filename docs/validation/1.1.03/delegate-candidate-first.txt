@@ -1,0 +1,89 @@
+OK probe runs on the real Paper server thread
+OK published Slimefun enabled
+OK DankTech2 enabled
+OK exact requested DankTech2 1.1.03 loaded
+SERVER 26.3-143-ff3655a (MC: 26.3)
+JAVA 25.0.4.1
+OK Trash tier 2 changes only tier inside exact stored PDC
+OK Trash tier 2 leaves source metadata unchanged
+OK Trash tier 2 retains output display name
+OK Trash tier 2 preserves full long ID and filter array
+OK Trash tier 3 changes only tier inside exact stored PDC
+OK Trash tier 3 leaves source metadata unchanged
+OK Trash tier 3 retains output display name
+OK Trash tier 3 preserves full long ID and filter array
+OK Trash tier 4 changes only tier inside exact stored PDC
+OK Trash tier 4 leaves source metadata unchanged
+OK Trash tier 4 retains output display name
+OK Trash tier 4 preserves full long ID and filter array
+OK Trash tier 5 changes only tier inside exact stored PDC
+OK Trash tier 5 leaves source metadata unchanged
+OK Trash tier 5 retains output display name
+OK Trash tier 5 preserves full long ID and filter array
+OK Trash tier 6 changes only tier inside exact stored PDC
+OK Trash tier 6 leaves source metadata unchanged
+OK Trash tier 6 retains output display name
+OK Trash tier 6 preserves full long ID and filter array
+OK Trash tier 7 changes only tier inside exact stored PDC
+OK Trash tier 7 leaves source metadata unchanged
+OK Trash tier 7 retains output display name
+OK Trash tier 7 preserves full long ID and filter array
+OK Trash tier 8 changes only tier inside exact stored PDC
+OK Trash tier 8 leaves source metadata unchanged
+OK Trash tier 8 retains output display name
+OK Trash tier 8 preserves full long ID and filter array
+OK Trash tier 9 changes only tier inside exact stored PDC
+OK Trash tier 9 leaves source metadata unchanged
+OK Trash tier 9 retains output display name
+OK Trash tier 9 preserves full long ID and filter array
+OK initial historical Trash payload never mutated by upgrade chain
+OK first Trash craft creates an empty historical 18-slot instance
+OK malformed existing Trash instance refused without replacing or mutating it
+OK Dank tier, exact owner, nine item/count slots and maximum count preserved
+OK stored items retain rich nested metadata
+OK unknown FLOAT, BYTE_ARRAY and nested LONG fields retain exact types and values
+OK admin preparation retains full 64-bit replacement ID
+OK admin preparation changes only the ID
+OK admin preparation never mutates source item
+OK admin clone skips original and occupied long IDs
+CAPACITY-INVENTORY org.bukkit.craftbukkit.inventory.CraftInventoryCustom
+OK full native inventory refuses clone without any registry or inventory mutation
+OK partial native insertion restores all storage slots before refusing clone
+OK refused registry save restores native inventory and keeps only original identity
+OK failed registry save restores native inventory and keeps only original identity
+OK malformed Dank ID refused before inventory or registry mutation
+OK real ConfigManager registers original high-ID Dank Pack
+INVENTORY org.bukkit.craftbukkit.inventory.CraftInventory
+OK replacement delivered before real registry save
+OK original remains registered during new save
+OK real ConfigManager accepted replacement
+OK successful clone deletes only original ID
+OK replacement remains registered before old deletion
+OK real chest and ConfigManager accept clone
+OK successful order is delivery then registry save then original deletion
+OK real delivered clone preserves complete rich item payload
+OK old identity invalidated after successful clone
+OK stale admin menu refused without inventory change
+GUI-SCOPE Real Paper menu instances and registry; tracked Player-interface proxy, no connected player.
+OK stale Admin left click reports refusal and closes the tracked API view
+FAIL first
+java.lang.ClassCastException: Cannot cast io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack to org.bukkit.craftbukkit.inventory.CraftItemStack
+	at java.base/java.lang.Class.cast(Class.java:3492)
+	at org.bukkit.craftbukkit.inventory.CraftItemStack.getCraftStack(CraftItemStack.java:87)
+	at org.bukkit.craftbukkit.inventory.CraftItemStack.equals(CraftItemStack.java:105)
+	at java.base/java.util.ArrayList.indexOfRange(ArrayList.java:300)
+	at java.base/java.util.ArrayList.indexOf(ArrayList.java:287)
+	at java.base/java.util.ArrayList.contains(ArrayList.java:276)
+	at PackPreservationProbe.jar//audit.PackPreservationProbe.staleGuiGuards(PackPreservationProbe.java:394)
+	at PackPreservationProbe.jar//audit.PackPreservationProbe.first(PackPreservationProbe.java:178)
+	at PackPreservationProbe.jar//audit.PackPreservationProbe.lambda$onEnable$0(PackPreservationProbe.java:87)
+	at org.bukkit.craftbukkit.scheduler.CraftTask.run(CraftTask.java:78)
+	at org.bukkit.craftbukkit.scheduler.CraftScheduler.mainThreadHeartbeat(CraftScheduler.java:474)
+	at net.minecraft.server.MinecraftServer.tickChildren(MinecraftServer.java:1749)
+	at net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1602)
+	at net.minecraft.server.dedicated.DedicatedServer.tickServer(DedicatedServer.java:404)
+	at net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1660)
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1330)
+	at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:298)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+

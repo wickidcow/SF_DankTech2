@@ -1,0 +1,12 @@
+{
+  "src/main/java/io/github/sefiraat/danktech2/core/AdminPackClone.java": "58b60b126a76e48dacb93b198eeaf6916886381a43f65c1e96405eb4fe226bab",
+  "src/main/java/io/github/sefiraat/danktech2/core/DankPackAccess.java": "887e136c55205c119528f8e163943be8380fcf1473047f3c39e308babbd15398",
+  "src/main/java/io/github/sefiraat/danktech2/core/DankGUI.java": "8c3d25b806812ad3cd296f65ec69f57180fccc639af1e551fdd007b3020e3920",
+  "src/main/java/io/github/sefiraat/danktech2/core/AdminGUI.java": "05500b48ee764645937831e9d7d916d73d75dab432d0ad5e0adbf16d8d72a568",
+  "src/main/java/io/github/sefiraat/danktech2/slimefun/machines/TrashPackUpgrade.java": "e18c2b68dc769ac09cd8ef05d535346a559634e6c8ba6367d8d2299bf5b7f444",
+  "src/main/java/io/github/sefiraat/danktech2/slimefun/machines/DankPackUpgrade.java": "9cbf3a3b94c21f7d55dcb7eaa280a6c1abe7c82d529effcd3baf3fa09840ec77",
+  "src/main/java/io/github/sefiraat/danktech2/slimefun/machines/DankCrafter.java": "0eb6b9ec481a09e5a3da719951b3bc1f4d33008d996f4386e0eea0bcf1169e68",
+  "src/main/java/io/github/sefiraat/danktech2/listeners/PackListener.java": "7d0e5cad97acec0095d296526035f860c9bb9c767708e0825c811f39f48ef063",
+  "src/main/java/io/github/sefiraat/danktech2/managers/ConfigManager.java": "f81284df379efc18ca27c13d5f44fdbd95feac664e18422f29f9b5f99c4cd29e",
+  "src/main/java/io/github/sefiraat/danktech2/managers/PackRegistryFile.java": "07f0886eb8f5413272b051b364d750ef45724aab44445838a82e4d48c58f1b94"
+}

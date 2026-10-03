@@ -1,0 +1,18 @@
+Run from the SF_DankTech2 repository root on 2026-10-03:
+
+python3 scripts/runtime/run_probe.py \
+  --dank-jar /tmp/dank-validation/SF_DankTech21.1.03.jar \
+  --slimefun-jar /tmp/magic-bundle-refresh/Slimefun-Legacy4.1.67.jar \
+  --paper-jar /tmp/magic-build-tools/paper-26.3-143.jar \
+  --cached-server /tmp/magic-shop-safety.IXaJrR/server \
+  --java-home /tmp/magic-build-tools/jdk-25.0.4.1+1 \
+  --output /tmp/dank-native-runtime/final-candidate-3 \
+  --gui-guards \
+  --legacy-alias-restart \
+  --unreadable-item-restart
+
+Input candidate SHA-256:
+2921c540dae542d2932a7b4d44e93b160cb4a9fbd6739f17b413c9eed5e42407
+
+Paths above record the actual run. For reproduction, supply equivalent downloaded
+inputs/cached disposable Paper runtime and a new nonexistent output directory.

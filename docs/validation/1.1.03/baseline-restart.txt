@@ -1,0 +1,30 @@
+OK probe runs on the real Paper server thread
+OK published Slimefun enabled
+OK DankTech2 enabled
+OK new DankTech2 1.1.03 loaded
+SERVER 26.3-143-ff3655a (MC: 26.3)
+JAVA 25.0.4.1
+OK saved real world chest loaded after restart
+OK world chest retains exact clone item after restart
+OK world chest retains exact upgraded Trash Pack after restart
+OK world chest retains exact Long.MAX_VALUE item after restart
+OK historical Trash filter byte array is byte-for-byte unchanged across world save and restart
+OK Slimefun resolves the same registered item IDs after restart
+OK old identity remains deleted in reread registry
+OK replacement remains registered after restart
+OK Long.MAX_VALUE registry key and LONG payload survive restart
+FAIL second
+java.lang.AssertionError: ConfigManager rereads both exact saved rich items with no extra records
+	at PackPreservationProbe.jar//audit.PackPreservationProbe.check(PackPreservationProbe.java:495)
+	at PackPreservationProbe.jar//audit.PackPreservationProbe.second(PackPreservationProbe.java:210)
+	at PackPreservationProbe.jar//audit.PackPreservationProbe.lambda$onEnable$0(PackPreservationProbe.java:79)
+	at org.bukkit.craftbukkit.scheduler.CraftTask.run(CraftTask.java:78)
+	at org.bukkit.craftbukkit.scheduler.CraftScheduler.mainThreadHeartbeat(CraftScheduler.java:474)
+	at net.minecraft.server.MinecraftServer.tickChildren(MinecraftServer.java:1749)
+	at net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1602)
+	at net.minecraft.server.dedicated.DedicatedServer.tickServer(DedicatedServer.java:404)
+	at net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1660)
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1330)
+	at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:298)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
