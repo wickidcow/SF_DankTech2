@@ -1,6 +1,5 @@
 package io.github.sefiraat.danktech2.managers;
 
-import com.bgsoftware.wildstacker.api.WildStackerAPI;
 import com.gmail.nossr50.mcMMO;
 import com.gmail.nossr50.util.skills.CombatUtils;
 import dev.rosewood.rosestacker.api.RoseStackerAPI;
@@ -20,11 +19,14 @@ public class SupportedPluginManager {
     private final boolean roseStacker;
 
     private RoseStackerAPI roseStackerAPI;
+    private final WildStackerBridge wildStackerBridge;
 
     public SupportedPluginManager() {
         isMcMMO = Bukkit.getPluginManager().isPluginEnabled("mcMMO");
         wildStacker = Bukkit.getPluginManager().isPluginEnabled("WildStacker");
         roseStacker = Bukkit.getPluginManager().isPluginEnabled("RoseStacker");
+        // Load the optional API only on servers that actually enable WildStacker.
+        wildStackerBridge = wildStacker ? new WildStackerBridge() : null;
 
 
         if (roseStacker) {
@@ -63,7 +65,7 @@ public class SupportedPluginManager {
 
     public int getStackAmount(Item item) {
         if (wildStacker) {
-            return WildStackerAPI.getItemAmount(item);
+            return wildStackerBridge.getItemAmount(item);
         } else if (roseStacker) {
             StackedItem stackedItem = roseStackerAPI.getStackedItem(item);
             return stackedItem == null ? item.getItemStack().getAmount() : stackedItem.getStackSize();
@@ -74,7 +76,7 @@ public class SupportedPluginManager {
 
     public void setStackAmount(Item item, int amount) {
         if (wildStacker) {
-            WildStackerAPI.getStackedItem(item).setStackAmount(amount, true);
+            wildStackerBridge.setStackAmount(item, amount);
         } else if (roseStacker) {
             StackedItem stackedItem = roseStackerAPI.getStackedItem(item);
             stackedItem.setStackSize(amount);
