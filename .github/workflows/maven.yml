@@ -12,8 +12,8 @@ permissions:
   contents: write
 
 env:
-  LEGACY_VERSION: "1.1.03"
-  OUTPUT_NAME: "SF_DankTech21.1.03.jar"
+  LEGACY_VERSION: "1.1.04"
+  OUTPUT_NAME: "SF_DankTech21.1.04.jar"
 
 jobs:
   build:
@@ -32,9 +32,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          grep -Fq '<version>1.1.03</version>' pom.xml
+          grep -Fq '<version>1.1.04</version>' pom.xml
           grep -Fq '<paper.version>1.21.11-R0.1-SNAPSHOT</paper.version>' pom.xml
           grep -Fq '<maven.compiler.release>21</maven.compiler.release>' pom.xml
+          grep -Fq '<artifactId>WildStackerAPI</artifactId><version>2026.3</version><scope>provided</scope>' pom.xml
+          grep -Fq 'WildStackerAPI.getItemAmount(item)' src/main/java/io/github/sefiraat/danktech2/managers/SupportedPluginManager.java
+          grep -Fq 'WildStackerAPI.getStackedItem(item).setStackAmount(amount, true)' src/main/java/io/github/sefiraat/danktech2/managers/SupportedPluginManager.java
           grep -Fq '<finalName>SF_DankTech2${project.version}</finalName>' pom.xml
           grep -Fq "api-version: '1.21'" src/main/resources/plugin.yml
       - name: Verify registry startup boundary
@@ -60,7 +63,7 @@ jobs:
           unzip -p "$JAR" plugin.yml | grep -Fq "version: ${LEGACY_VERSION}"
           python3 - <<'PY'
           import pathlib, struct, zipfile
-          jar = pathlib.Path('dist') / 'SF_DankTech21.1.03.jar'
+          jar = pathlib.Path('dist') / 'SF_DankTech21.1.04.jar'
           max_major = 0
           with zipfile.ZipFile(jar) as zf:
               for name in zf.namelist():
