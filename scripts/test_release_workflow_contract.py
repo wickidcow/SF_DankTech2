@@ -34,5 +34,12 @@ class ImmutableReleaseWorkflowTest(unittest.TestCase):
         self.assertIn('"$TAG_SOURCE" != "$GITHUB_SHA"', self.publish)
 
 
+    def test_shell_continuations_have_exactly_one_backslash(self):
+        # A doubled trailing slash becomes a literal argument, not a newline escape.
+        for line in self.publish.splitlines():
+            if line.endswith("\\"):
+                self.assertFalse(line.endswith("\\\\"), "Invalid doubled shell line continuation")
+
+
 if __name__ == "__main__":
     unittest.main()

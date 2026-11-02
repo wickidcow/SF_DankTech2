@@ -128,7 +128,7 @@ jobs:
             # An existing published release is immutable, even on a retry.
             # Rebuild and verify the exact asset bytes, but never upload over it.
             mkdir -p .ci/existing-release
-            gh release download "$TAG" --repo "$GITHUB_REPOSITORY" \\
+            gh release download "$TAG" --repo "$GITHUB_REPOSITORY" \
               --pattern "$OUTPUT_NAME" --dir .ci/existing-release
             EXISTING=".ci/existing-release/$OUTPUT_NAME"
             test -s "$EXISTING"
