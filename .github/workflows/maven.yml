@@ -42,6 +42,8 @@ jobs:
           grep -Fq 'WildStackerAPI.getStackedItem(item).setStackAmount(amount, true)' src/main/java/io/github/sefiraat/danktech2/managers/SupportedPluginManager.java
           grep -Fq '<finalName>SF_DankTech2${project.version}</finalName>' pom.xml
           grep -Fq "api-version: '1.21'" src/main/resources/plugin.yml
+      - name: Verify immutable release workflow policy
+        run: python3 -m unittest scripts/test_release_workflow_contract.py -v
       - name: Verify registry startup boundary
         run: python3 scripts/verify_pack_registry_safety.py
       - name: Verify Paper 1.21.11 baseline compilation
